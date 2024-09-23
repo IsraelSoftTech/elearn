@@ -5,7 +5,7 @@ body {
 
 .dashboard {
   display: flex;
-  height: 100vh;
+  height: 120vh;
 }
 /* Logo */
 .logo {
@@ -41,17 +41,22 @@ body {
 }
 
 .sidebar-item {
+  display: flex;
+ text-decoration: none;
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 5px;
   margin-bottom: 10px;
   transition: background-color 0.3s;
+  color: black;
+  font-weight: bold;
 }
 
 .sidebar-item.active {
-  background-color: orangered;
+  background-color: #FE7235;
   font-weight: bold;
   color: #fff;
+  
 }
 
 .main-content {
@@ -80,9 +85,13 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
-.user-options span {
+.user-options{
+  gap: 1rem;
+  display: flex;
   margin-left: 15px;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
 .cards {
@@ -119,8 +128,8 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   width: 35px;
   height: 35px;
-position: fixed;
-margin-left: -220px;
+position: relative;
+margin-left: -115px;
   padding: 1rem;
   align-items: center;
   justify-content: center;
@@ -131,6 +140,7 @@ margin-left: -220px;
 .dash-icon{
  margin-right: 0.7rem;
  font-size: 20px;
+
 }
 .count {
   font-size: 24px;
@@ -190,3 +200,32 @@ tr {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+/* 
+Profile picture */
+.user-options .profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+.user-options .profile img{
+  width: 45px;
+  height: 45px;
+}
+/* flag */
+.country{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+
+}
+
