@@ -2,7 +2,7 @@
 ## Creating a course
 
 ### Edidting a course 
-endpoint: /course
+endpoint: "/course"
 method: PUT
 expected_body:
         {
