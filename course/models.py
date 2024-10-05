@@ -21,7 +21,7 @@ class Content(models.Model):
     created_by = models.ManyToManyField(Profile, related_name='created_by',  blank=True)
     # assignements =
     # class_taken = 
-    media = models.FileField(upload_to='files')
+    media = models.FileField(upload_to='files', null=True, blank=True)
 
     def __str__(self):
         return self.title
