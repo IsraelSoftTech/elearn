@@ -4,7 +4,7 @@
 ## Edidting a course 
 endpoint: /course
 method: PUT
-expected_body:
+expected_body
    {
         "id": 4,
         "name": "Algorithms | updated - 1",
