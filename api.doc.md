@@ -5,6 +5,7 @@
 endpoint: "/course"
 method: PUT
 expected_body:
+<br>
         {
             "id": 4,
             "name": "Algorithms | updated - 1",
