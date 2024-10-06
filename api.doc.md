@@ -47,7 +47,63 @@
 # Content
 - A content cannot exist without a corresponding course 
 
+### Get all Content
+- endpoint "/course/content/list"
+- method: GET
+
+- expected result if successful: 
+```
+    [
+        {
+            "id": 1,
+            "title": "Looping in Algorithms",
+            "description": "this is the text that has to be displyed to the user showing more stuff",
+            "media": "/media/files/degree.pdf",
+            "created_by": []
+        },
+        {
+            "id": 3,
+            "title": "Algorithm design",
+            "description": "this is the text that has to be displyed to the user showing more stuff",
+            "media": null,
+            "created_by": []
+        },
+        {
+            "id": 7,
+            "title": "Looping in Algorithms",
+            "description": "this is the text that has to be displyed to the user showing more stuff",
+            "media": null,
+            "created_by": []
+        }
+    ]
+```
+
+
+### Get single Content
+- endpoint "/course/content/id"
+- method: GET
+
+- expected result if successful: 
+  ```
+    {
+        "id": 1,
+        "title": "Looping in Algorithms",
+        "description": "this is the text that has to be displyed to the user showing more stuff",
+        "media": "/media/files/degree.pdf",
+        "created_by": []
+    }
+  ```
+
 ### Creating content
-- endpoint "/course/content"
+- endpoint "/course/content/list"
 - method: POST
 - expected body: 
+
+```
+    {
+        "title": "Looping in Algorithms", *
+        "description": "this is the text that has to be displyed to the user showing more stuff", *
+        "course": 4 *
+        "media": ""
+    }
+```
