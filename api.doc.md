@@ -83,7 +83,7 @@
 - endpoint "/course/content/id"
 - method: GET
 
-- expected result if successful: 
+- expected result if successfull: 
   ```
     {
         "id": 1,
@@ -106,4 +106,42 @@
         "course": 4 *
         "media": ""
     }
+```
+
+### Updating Content
+- endpoint "/course/content/id"
+- method: PUT
+- expected body: 
+
+```
+    {
+        "title": "Looping in Algorithms", *
+        "description": "this is the text that has to be displyed to the user showing more stuff", *
+        "media": ""
+    }
+```
+
+- expected result if successfull: 
+``` 
+    {
+        "id": 1,
+        "title": "Looping in Algorithms | updated",
+        "description": "this is the text that has to be displyed to the user showing more stuff",
+        "media": "/media/files/degree.pdf",
+        "created_by": []
+    }
+
+```
+
+### Deleting a Content
+- endpoint "/course/content/id"
+- method: DELETE
+- expected body: None
+
+- expected result if successfull: 
+``` 
+    {
+        "message": "Content deleted successfully."
+    }
+
 ```

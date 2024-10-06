@@ -16,7 +16,7 @@ class ContentList(APIView):
     def post(self,request):
         serializer = ContentSerializer(data=request.data)
 
-        course_id = request.data['course']
+        course_id = request.data.get('course', None)
 
         # checking to see is a course is passed
         if course_id is None:
@@ -64,7 +64,7 @@ class ContentDetail(APIView):
         if serializer.is_valid():
             serializer.save()
 
-            return Response({"message": "Content updated successfully"}, serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK )
         else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
