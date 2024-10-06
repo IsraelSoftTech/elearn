@@ -130,15 +130,17 @@ class CourseDetails(APIView):
             # updating the course content
             if course_content:
                 content_data = []
+                content = {}
                 for id in course_content: 
                     try:
                         content = Content.objects.get(pk=id)
                         content_data.append(content)
                     except Content.DoesNotExist: 
                         continue
-                
-                course.content.add(content)
-                course.save()
+                print(content)
+                if content:
+                    course.content.add(content)
+                    course.save()
 
 
 
