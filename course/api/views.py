@@ -137,7 +137,6 @@ class CourseDetails(APIView):
                         content_data.append(content)
                     except Content.DoesNotExist: 
                         continue
-                print(content)
                 if content:
                     course.content.add(content)
                     course.save()

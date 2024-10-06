@@ -1,3 +1,7 @@
+# Take Note of 
+1. * indicates required and not * indicates optional. 
+- if required and no data is passed, that request is going to fail
+
 # courses 
 ### Creating a course
 - endpoint: "/course"
@@ -24,7 +28,7 @@
             }
         ```
 
-    course_content constains the ids of the content of the courses
+    course_content constains the ids of the content of the courses and it is optional too, 
 
 
 ### Deleting a course 
@@ -38,3 +42,12 @@
         "message": "Course deleted successfully"
     }
   ```
+
+
+# Content
+- A content cannot exist without a corresponding course 
+
+### Creating content
+- endpoint "/course/content"
+- method: POST
+- expected body: 
