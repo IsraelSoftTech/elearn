@@ -17,9 +17,9 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-    def validate_name(self, value): 
+    def validate_title(self, value): 
         try:
-            already_existing_course = Course.objects.filter(name=value)
+            already_existing_course = Course.objects.filter(title=value)
             if(already_existing_course):
                 raise serializers.ValidationError("Course already exist, choose another name.")
             else: 
