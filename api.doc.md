@@ -118,6 +118,7 @@
         "title": "Looping in Algorithms", *
         "description": "this is the text that has to be displyed to the user showing more stuff", *
         "media": ""
+        "is_complete": false
     }
 ```
 

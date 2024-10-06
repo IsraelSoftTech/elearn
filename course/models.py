@@ -22,6 +22,7 @@ class Content(models.Model):
     # assignements =
     # class_taken = 
     media = models.FileField(upload_to='files', null=True, blank=True)
+    is_complete = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
