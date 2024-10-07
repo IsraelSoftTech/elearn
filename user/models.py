@@ -9,6 +9,9 @@ class Profile(models.Model):
     is_teacher = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
 
+    def __str__(self): 
+        return self.user.username
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
