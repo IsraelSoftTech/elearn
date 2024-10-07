@@ -6,6 +6,10 @@ class MCQChoice(models.Model):
     answer = models.CharField(max_length=100)
     is_correct = models.BooleanField(default=False)
 
+    def __str__(self): 
+        return f"{self.answer} | {self.is_correct}"
+
+
 class MCQQuestion(models.Model): 
     question = models.CharField(max_length=500)
     choices = models.ManyToManyField(MCQChoice, blank=True)
@@ -48,10 +52,10 @@ class MCQStudentAnswer(models.Model):
 
 class StructuralStudentAnswer(models.Model): 
     student = models.OneToOneField(Profile, on_delete=models.CASCADE, null=True, related_name="struct_question")
-    question = models.OneToOneField(Profile, on_delete=models.CASCADE, null=True)
+    question = models.OneToOneField(StructuralQuestion, on_delete=models.CASCADE, null=True)
     answer = models.CharField(max_length=2000)
     is_correct = models.BooleanField(default=False)
-    score = models.IntegerField(blank=True)
+    score = models.IntegerField(default=0, blank=True)
 
     def __str__(self): 
         return f"{self.student.user.username} {self.question.question}"
