@@ -11,7 +11,7 @@ class ContentList(APIView):
         contents = Content.objects.all()
         serializer = ContentSerializer(contents, many=True)
 
-        return Response(serializer.data)
+        return Response({"data":serializer.data})
     
     def post(self,request):
         serializer = ContentSerializer(data=request.data)
@@ -39,7 +39,7 @@ class ContentList(APIView):
                 serializer.delete()
                 return Response({"message":"That was an issue assigning content to course, try again"}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response({"data":serializer.data}, status=status.HTTP_201_CREATED)
         else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
@@ -52,7 +52,7 @@ class ContentDetail(APIView):
             return Response({"message": "Content does not exist"}, status=status.HTTP_404_NOT_FOUND)
         serializer = ContentSerializer(content)
 
-        return Response(serializer.data)
+        return Response({"data":serializer.data})
 
     def put(self,request,pk): 
         try:
@@ -64,7 +64,7 @@ class ContentDetail(APIView):
         if serializer.is_valid():
             serializer.save()
 
-            return Response(serializer.data, status=status.HTTP_200_OK )
+            return Response({"data":serializer.data}, status=status.HTTP_200_OK )
         else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -87,7 +87,7 @@ class CourseList(APIView):
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
 
-        return Response(serializer.data)
+        return Response({"data":serializer.data})
     
     def post(self, request): 
         serializer = CourseSerializer(data=request.data)
@@ -95,7 +95,7 @@ class CourseList(APIView):
         if serializer.is_valid(): 
             serializer.save()
 
-            return Response(serializer.data)
+            return Response({"data":serializer.data})
         
         else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -110,7 +110,7 @@ class CourseDetails(APIView):
 
         serializer = CourseSerializer(course)
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response({"data":serializer.data}, status=status.HTTP_200_OK)
     
     def put(self,request,pk):
         try:
@@ -143,7 +143,7 @@ class CourseDetails(APIView):
 
 
 
-            return Response(serializer.data)
+            return Response({"data":serializer.data})
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
