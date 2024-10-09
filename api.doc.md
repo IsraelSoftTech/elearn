@@ -393,10 +393,75 @@
 - method: DELETE
 - expected body: None
 
-- expected result if successfull:  
+- expected result if successfull: 
+
+```
 {
        
         "question": "Which loop is infinite",
         "question_type": "MCQ"
 }
+```
 
+# MCQ Choices 
+
+### Getting MCQ List
+- endpoint "/assignment/mcq-question/choice/list"
+- method: DELETE
+- expected body: None 
+
+- expected result if successfull: 
+
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "answer": "While",
+            "is_correct": true
+        },
+        {
+            "id": 2,
+            "answer": "for",
+            "is_correct": false
+        },
+        {
+            "id": 3,
+            "answer": "do while",
+            "is_correct": false
+        },
+        {
+            "id": 6,
+            "answer": "all of the above",
+            "is_correct": false
+        }
+    ]
+}
+
+```
+
+### Creating an MCQ Choice
+- endpoint "/assignment/mcq-question/choice/list"
+- method: DELETE
+- expected body: 
+```
+{
+            "answer": "all of the above",
+            "is_correct": false,
+            "mcq-question": 4
+}
+- mcq-question is the id of the question
+```
+
+- expected result if successfull: 
+```
+{
+    "message": "MCQ choice created successfully",
+    "data": {
+        "id": 6,
+        "answer": "all of the above",
+        "is_correct": false
+    }
+}
+
+```

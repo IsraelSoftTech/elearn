@@ -21,7 +21,7 @@ class MCQChoiceList(APIView):
         mcq_id = request.data['mcq-question']
 
         try: 
-            mcq_question = Assignment.objects.get(pk=mcq_id)
+            mcq_question = MCQQuestion.objects.get(pk=mcq_id)
         except  Assignment.DoesNotExist: 
             return Response({"message": "Failed, MCQ question doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -29,7 +29,9 @@ class MCQChoiceList(APIView):
             serializer.save()
             mcq_choice = MCQChoice.objects.get(pk=serializer.data['id'])
             try: 
+                print(mcq_question)
                 mcq_question.choices.add(mcq_choice)
+                mcq_question.save()
             except: 
                 mcq_choice.delete()
                 return Response({"There was an error assigning the choice to the MCQ question"})
@@ -104,6 +106,7 @@ class MCQQuestionList(APIView):
             mcq_question = MCQQuestion.objects.get(pk=serializer.data['id'])
             try: 
                 assingment.mcq_questions.add(mcq_question)
+                assingment.save()
             except: 
                 mcq_question.delete()
                 return Response({"There was an error assigning the question to the assignement"})
