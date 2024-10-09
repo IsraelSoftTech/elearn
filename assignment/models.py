@@ -42,17 +42,17 @@ class Assignment(models.Model):
         return self.title
 
 class MCQStudentAnswer(models.Model): 
-    student = models.OneToOneField(Profile, on_delete=models.CASCADE, null=True)
-    question = models.OneToOneField(MCQQuestion, on_delete=models.CASCADE, null=True)
-    choice = models.OneToOneField(MCQChoice, on_delete=models.CASCADE, null=True)
+    student = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    question = models.ForeignKey(MCQQuestion, on_delete=models.CASCADE, null=True)
+    choice = models.ForeignKey(MCQChoice, on_delete=models.CASCADE, null=True)
     is_correct = models.BooleanField(default=False)
 
     def __str__(self): 
         return f"{self.student.user.username} {self.question.question}"
 
 class StructuralStudentAnswer(models.Model): 
-    student = models.OneToOneField(Profile, on_delete=models.CASCADE, null=True, related_name="struct_question")
-    question = models.OneToOneField(StructuralQuestion, on_delete=models.CASCADE, null=True)
+    student = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, related_name="struct_question")
+    question = models.ForeignKey(StructuralQuestion, on_delete=models.CASCADE, null=True)
     answer = models.CharField(max_length=2000)
     is_correct = models.BooleanField(default=False)
     score = models.IntegerField(default=0, blank=True)
@@ -62,7 +62,7 @@ class StructuralStudentAnswer(models.Model):
 
 class AssignAssignmentSubmission(models.Model):
     student = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='assignAssignementSubmission')
-    assignment = models.OneToOneField(Assignment, on_delete=models.CASCADE, related_name="assignment")
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, related_name="assignment")
     mcq_answers = models.ManyToManyField(MCQStudentAnswer, blank=True)
     stuctural_answers = models.ManyToManyField(StructuralStudentAnswer, blank=True)
     submission_date = models.DateTimeField(auto_now_add=True, blank=True)
