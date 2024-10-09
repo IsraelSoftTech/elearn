@@ -388,7 +388,7 @@
 
 ```
 
-### Updating a MCQ Question 
+### Deleting a MCQ Question 
 - endpoint "/assignment/mcq-question/id"
 - method: DELETE
 - expected body: None
@@ -407,7 +407,7 @@
 
 ### Getting MCQ List
 - endpoint "/assignment/mcq-question/choice/list"
-- method: DELETE
+- method: GET
 - expected body: None 
 
 - expected result if successfull: 
@@ -442,7 +442,7 @@
 
 ### Creating an MCQ Choice
 - endpoint "/assignment/mcq-question/choice/list"
-- method: DELETE
+- method: POST
 - expected body: 
 ```
 {
@@ -462,6 +462,64 @@
         "answer": "all of the above",
         "is_correct": false
     }
+}
+
+```
+
+
+### viewing a single MCQ Choice 
+- endpoint "/assignment/mcq-question/choice/id"
+- method: GET
+- expected body: None
+- expected result if successfull: 
+
+```
+{
+    "data": {
+        "id": 1,
+        "answer": "While",
+        "is_correct": true
+    }
+}
+
+```
+
+
+### updating an MCQ Choice 
+- endpoint "/assignment/mcq-question/choice/id"
+- method: PUT
+- expected body: 
+
+```
+{
+        "answer": "While  | updated",
+        "is_correct": true
+}
+
+```
+
+- expected result if successfull: 
+```
+{
+    "success": "MCQ Choice successfully Updated",
+    "data": {
+        "id": 1,
+        "answer": "While  | updated",
+        "is_correct": true
+    }
+}
+
+```
+
+
+### Deleting an MCQ choice 
+- endpoint "/assignment/mcq-question/choice/id"
+- method: DELETE
+- expected body: None
+- expected result if successfull: 
+```
+{
+    "message": "MCQ Choice successfully deleted"
 }
 
 ```

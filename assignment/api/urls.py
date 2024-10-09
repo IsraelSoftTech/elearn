@@ -10,5 +10,6 @@ urlpatterns = [
     path("mcq-question/<int:pk>", MCQQuestionDetail.as_view(), name='mcq-question-detail'),
 
     # MCQ choice
-    path('mcq-question/choice/list', MCQChoiceList.as_view(), name='mcq-question-choice'),
+    path('mcq-question/choice/list', MCQChoiceList.as_view(), name='mcq-question-choice-list'),
+    path('mcq-question/choice/<int:pk>', MCQChoiceDetail.as_view(), name='mcq-question-choice'),
 ]
