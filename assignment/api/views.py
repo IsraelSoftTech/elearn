@@ -5,6 +5,9 @@ from rest_framework.views import APIView
 from rest_framework import status
 
 
+# class 
+
+
 class StructuralQuestionDetail(APIView): 
     def get(self,request,struct_question_id, assignment_id): 
         try:

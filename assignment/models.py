@@ -66,11 +66,12 @@ class AssignAssignmentSubmission(models.Model):
     mcq_answers = models.ManyToManyField(MCQStudentAnswer, blank=True)
     stuctural_answers = models.ManyToManyField(StructuralStudentAnswer, blank=True)
     submission_date = models.DateTimeField(auto_now_add=True, blank=True)
+    updated_date = models.DateTimeField(auto_now=True, blank=True, null=True)
     grade = models.CharField(max_length=2, blank=True)
     total_score = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)], default=0, blank=True)
     is_graded = models.BooleanField(default=False)
     graded_by = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True, blank=True)
-    graded_on = models.DateTimeField(auto_now_add=True, blank=True)
+    graded_on = models.DateTimeField(blank=True)
 
     
     def __str__(self):
