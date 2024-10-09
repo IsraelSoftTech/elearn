@@ -196,12 +196,13 @@ class MCQQuestionDetail(APIView):
 
 
 class MCQQuestionList(APIView): 
-    def get(self, request):
+    def get(self, request, assignment_id):
         try:
-            mcqQuestions = MCQQuestion.objects.all()
+            assignemnt = Assignment.objects.get(pk=assignment_id)
         except Assignment.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         
+        mcqQuestions = assignemnt.mcq_questions.all()
         serializer = MCQQuestionSerializer(mcqQuestions, many=True)
 
         return Response({"data": serializer.data})
