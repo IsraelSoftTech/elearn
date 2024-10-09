@@ -9,8 +9,7 @@ class ContentSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    content = ContentSerializer(many=True, read_only=True)  # Assuming you want to allow updating the content
-
+    content = ContentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Course
