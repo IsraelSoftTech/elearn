@@ -5,6 +5,41 @@ from rest_framework.views import APIView
 from rest_framework import status
 
 
+class MCQChoiceList(APIView): 
+    def get(self, request):
+        try:
+            mcq_choices = MCQChoice.objects.all()
+        except MCQChoice.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = MCQChoiceSerializer(mcq_choices, many=True)
+
+        return Response({"data": serializer.data})
+    
+    def post(self, request):
+        serializer = MCQChoiceSerializer(data=request.data)
+        mcq_id = request.data['mcq-question']
+
+        try: 
+            mcq_question = Assignment.objects.get(pk=mcq_id)
+        except  Assignment.DoesNotExist: 
+            return Response({"message": "Failed, MCQ question doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
+
+        if serializer.is_valid():
+            serializer.save()
+            mcq_choice = MCQChoice.objects.get(pk=serializer.data['id'])
+            try: 
+                mcq_question.choices.add(mcq_choice)
+            except: 
+                mcq_choice.delete()
+                return Response({"There was an error assigning the choice to the MCQ question"})
+            return Response({"message":"MCQ choice created successfully","data": serializer.data}, status=status.HTTP_201_CREATED)
+        
+        else: 
+            return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+
 class MCQQuestionDetail(APIView): 
     def get(self,request,pk): 
         try:

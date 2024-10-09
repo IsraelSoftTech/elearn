@@ -394,3 +394,9 @@
 - expected body: None
 
 - expected result if successfull:  
+{
+       
+        "question": "Which loop is infinite",
+        "question_type": "MCQ"
+}
+
