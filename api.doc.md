@@ -219,6 +219,24 @@
 
 - expected result if successfull:  
 ```
+{
+    "data": {
+        "id": 1,
+        "title": "Introduction to Algorithm",
+        "description": "This assignment is going to help you understand alot of things about algorithms",
+        "reference_link": null,
+        "media_content": null,
+        "created_by": 1,
+        "assigned_students": [],
+        "mcq_questions": [
+            1
+        ],
+        "struct_questions": [
+            1,
+            2
+        ]
+    }
+}
 
 ```
 
@@ -255,4 +273,44 @@
         "struct_questions": []
     }
 }
+```
+
+### Deleting an Assignment 
+- endpoint "/assignment/id"
+- method: DELETE
+- expected body: None
+
+- expected result if successfull:  
+```
+{
+    "message", "Assignment successfully delete"
+}
+
+```
+
+
+# MCQ Questions 
+
+### View MCQ Question list 
+- endpoint "/assignment/mcq-question/list"
+- method: GET
+- expected body: None
+
+- expected result if successfull:  
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "question": "Which loop is infinite",
+            "question_type": "MCQ",
+            "choices": [
+                1,
+                2,
+                3
+            ]
+        }
+    ]
+}
+
 ```

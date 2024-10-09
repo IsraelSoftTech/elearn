@@ -4,6 +4,42 @@ from ..models import *
 from rest_framework.views import APIView
 from rest_framework import status
 
+
+class MCQQuestionList(APIView): 
+    def get(self, request):
+        try:
+            mcqQuestions = MCQQuestion.objects.all()
+        except Assignment.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = MCQQuestionSerializer(mcqQuestions, many=True)
+
+        return Response({"data": serializer.data})
+    
+    def post(self, request):
+        serializer = MCQQuestionSerializer(data=request.data)
+        assignment_id = request.POST['question_id']
+
+        try: 
+            assingment = Assignment.objects.get(pk=assignment_id)
+        except  Assignment.DoesNotExist: 
+            return Response({"message": "Failed, assignement doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            try: 
+                assingment.mcq_questions.add(serializer.data)
+            except: 
+                serializer.data.delete()
+                return Response({"There was an error assigning the question to the assignement"})
+            return Response({"message":"MCQ Question created successfully","data": serializer.data}, status=status.HTTP_201_CREATED)
+        
+        else: 
+            return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+
 class AssignmentList(APIView): 
     def get(self, request):
         try:
@@ -13,7 +49,7 @@ class AssignmentList(APIView):
         
         serializer = AssignmentSerializer(assignments, many=True)
 
-        return Response(serializer.data)
+        return Response({"data": serializer.data})
     
     def post(self, request):
         serializer = AssignmentSerializer(data=request.data)
