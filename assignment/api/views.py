@@ -46,19 +46,19 @@ class StructuralQuestionDetail(APIView):
 
 
 class StructuralQuestionList(APIView): 
-    def get(self, request):
+    def get(self, request, assignment_id):
         try:
-            struct_question = StructuralQuestion.objects.all()
-        except StructuralQuestion.DoesNotExist: 
+            assignment = Assignment.objects.get(pk=assignment_id)
+        except Assignment.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         
+        struct_question = assignment.struct_questions.all()
         serializer = StructuralQuestionSerializer(struct_question, many=True)
 
         return Response({"data": serializer.data})
     
-    def post(self, request):
+    def post(self, request, assignment_id):
         serializer = StructuralQuestionSerializer(data=request.data)
-        assignment_id = request.data['question']
 
         try: 
             assignment = Assignment.objects.get(pk=assignment_id)
@@ -81,9 +81,9 @@ class StructuralQuestionList(APIView):
     
 
 class MCQChoiceDetail(APIView): 
-    def get(self,request,pk): 
+    def get(self, request, mcq_id, assignment_id, choice_id): 
         try:
-            mcq_choice = MCQChoice.objects.get(pk=pk)
+            mcq_choice = MCQChoice.objects.get(pk=choice_id)
         except MCQChoice.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         
@@ -91,9 +91,9 @@ class MCQChoiceDetail(APIView):
 
         return Response({"data": serializer.data})
     
-    def put(self, request, pk): 
+    def put(self, request, mcq_id, assignment_id, choice_id): 
         try:
-            mcq_choice = MCQChoice.objects.get(pk=pk)
+            mcq_choice = MCQChoice.objects.get(pk=choice_id)
         except MCQChoice.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         
@@ -106,9 +106,9 @@ class MCQChoiceDetail(APIView):
         else:
             return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
-    def delete(self, request,pk): 
+    def delete(self, request,mcq_id, assignment_id, choice_id): 
         try:
-            mcq_choice = MCQChoice.objects.get(pk=pk)
+            mcq_choice = MCQChoice.objects.get(pk=choice_id)
         except MCQQuestion.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         
@@ -120,30 +120,29 @@ class MCQChoiceDetail(APIView):
 
 
 class MCQChoiceList(APIView): 
-    def get(self, request):
+    def get(self, request, mcq_id, assignment_id ):
         try:
-            mcq_choices = MCQChoice.objects.all()
-        except MCQChoice.DoesNotExist: 
+            mcq_question = MCQQuestion.objects.get(pk=mcq_id)
+        except MCQQuestion.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         
+        mcq_choices = mcq_question.choices.all()
         serializer = MCQChoiceSerializer(mcq_choices, many=True)
 
         return Response({"data": serializer.data})
     
-    def post(self, request):
+    def post(self, request, mcq_id, assignment_id):
         serializer = MCQChoiceSerializer(data=request.data)
-        mcq_id = request.data['mcq-question']
 
         try: 
             mcq_question = MCQQuestion.objects.get(pk=mcq_id)
-        except  Assignment.DoesNotExist: 
+        except  MCQQuestion.DoesNotExist: 
             return Response({"message": "Failed, MCQ question doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
 
         if serializer.is_valid():
             serializer.save()
             mcq_choice = MCQChoice.objects.get(pk=serializer.data['id'])
             try: 
-                print(mcq_question)
                 mcq_question.choices.add(mcq_choice)
                 mcq_question.save()
             except: 
@@ -157,7 +156,7 @@ class MCQChoiceList(APIView):
 
 
 class MCQQuestionDetail(APIView): 
-    def get(self,request,pk): 
+    def get(self,request,pk, assignment_id): 
         try:
             mcq_question = MCQQuestion.objects.get(pk=pk)
         except Assignment.DoesNotExist: 
@@ -207,9 +206,8 @@ class MCQQuestionList(APIView):
 
         return Response({"data": serializer.data})
     
-    def post(self, request):
+    def post(self, request, assignment_id):
         serializer = MCQQuestionSerializer(data=request.data)
-        assignment_id = request.data['assignment']
 
         try: 
             assingment = Assignment.objects.get(pk=assignment_id)

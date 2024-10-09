@@ -7,14 +7,14 @@ urlpatterns = [
 
     # MCQ questions 
     path("<int:assignment_id>/mcq-question/list/", MCQQuestionList.as_view(), name='mcq-question-list'),
-    path("mcq-question/<int:pk>", MCQQuestionDetail.as_view(), name='mcq-question-detail'),
+    path("<int:assignment_id>/mcq-question/<int:pk>", MCQQuestionDetail.as_view(), name='mcq-question-detail'),
 
     # MCQ choice
-    path('mcq-question/choice/list', MCQChoiceList.as_view(), name='mcq-question-choice-list'),
-    path('mcq-question/choice/<int:pk>', MCQChoiceDetail.as_view(), name='mcq-question-choice'),
+    path('<int:assignment_id>/mcq-question/<int:mcq_id>/choice/list', MCQChoiceList.as_view(), name='mcq-question-choice-list'),
+    path('<int:assignment_id>/mcq-question/<int:mcq_id>/choice/<int:choice_id>', MCQChoiceDetail.as_view(), name='mcq-question-choice'),
 
     # Structural Question 
-    path("strut-question/list", StructuralQuestionList.as_view(), name='strut-question-list'), 
+    path("<int:assignment_id>/strut-question/list", StructuralQuestionList.as_view(), name='strut-question-list'), 
     path("strut-question/<int:pk>", StructuralQuestionDetail.as_view(), name='strut-question'), 
     
 ]

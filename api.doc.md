@@ -291,7 +291,7 @@
 # MCQ Questions 
 
 ### View MCQ Question list 
-- endpoint "/assignment/mcq-question/list"
+- endpoint "/assignment/assignment_id/mcq-question/list"
 - method: GET
 - expected body: None
 
@@ -327,7 +327,7 @@
 ```
 
 ### Creating a MCQ Question  
-- endpoint "/assignment/mcq-question/list"
+- endpoint "/assignment/assignment_id/mcq-question/list"
 - method: POST
 - expected body: 
 
@@ -335,7 +335,6 @@
 {
 
        "question": "Which loop is infinite",
-       "assignment": id
 
 }
 
@@ -343,7 +342,7 @@
 
 
 ### Viewing a signle MCQ Question 
-- endpoint "/assignment/mcq-question/id"
+- endpoint "/assignment/assignment_id/mcq-question/id"
 - method: GET
 - expected body: 
 
@@ -405,7 +404,7 @@
 # MCQ Choices 
 
 ### Getting MCQ List
-- endpoint "/assignment/mcq-question/choice/list"
+- endpoint "/assignment/assignment_id/mcq-question/mcq_id/choice/list"
 - method: GET
 - expected body: None 
 
@@ -440,14 +439,13 @@
 ```
 
 ### Creating an MCQ Choice
-- endpoint "/assignment/mcq-question/choice/list"
+- endpoint "/assignment/assignment_id/mcq-question/mcq_id/choice/list"
 - method: POST
 - expected body: 
 ```
 {
             "answer": "all of the above",
             "is_correct": false,
-            "mcq-question": 4
 }
 - mcq-question is the id of the question
 ```
@@ -467,7 +465,7 @@
 
 
 ### viewing a single MCQ Choice 
-- endpoint "/assignment/mcq-question/choice/id"
+- endpoint "/assignment/assignment_id/mcq-question/mcq_id/choice/choice_id"
 - method: GET
 - expected body: None
 - expected result if successfull: 
@@ -485,7 +483,7 @@
 
 
 ### updating an MCQ Choice 
-- endpoint "/assignment/mcq-question/choice/id"
+- endpoint "/assignment/assignment_id/mcq-question/mcq_id/choice/choice_id"
 - method: PUT
 - expected body: 
 
@@ -512,7 +510,7 @@
 
 
 ### Deleting an MCQ choice 
-- endpoint "/assignment/mcq-question/choice/id"
+- endpoint "/assignment/assignment_id/mcq-question/mcq_id/choice/choice_id"
 - method: DELETE
 - expected body: None
 - expected result if successfull: 
