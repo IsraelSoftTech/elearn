@@ -35,8 +35,8 @@ class ContentList(APIView):
                 course.content.add(serializer.data['id'])
                 course.save()
             except: 
-                print(serializer)
-                serializer.delete()
+                content = Content.objects.get(pk=serializer.data['id'])
+                content.delete()
                 return Response({"message":"That was an issue assigning content to course, try again"}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
             return Response({"data":serializer.data}, status=status.HTTP_201_CREATED)
