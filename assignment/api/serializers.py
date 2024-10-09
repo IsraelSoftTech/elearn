@@ -23,6 +23,9 @@ class AssignmentSerializer(serializers.ModelSerializer):
         model = Assignment
         fields = "__all__"
 
+    mcq_questions = MCQQuestionSerializer(many=True, read_only=True)
+    struct_questions = StructuralQuestionSerializer(many=True, read_only=True)
+
 class MCQStudentAnswerSerializer(serializers.ModelSerializer): 
     class Meta:
         model = MCQStudentAnswer

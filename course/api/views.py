@@ -45,7 +45,7 @@ class ContentList(APIView):
         
 
 class ContentDetail(APIView): 
-    def get(self, request, pk): 
+    def get(self, request, pk, course_id): 
         try:
             content = Content.objects.get(pk=pk)
         except Content.DoesNotExist:
@@ -54,7 +54,7 @@ class ContentDetail(APIView):
 
         return Response({"data":serializer.data})
 
-    def put(self,request,pk): 
+    def put(self,request,pk, course_id): 
         try:
             content = Content.objects.get(pk=pk)
         except Content.DoesNotExist:
@@ -69,7 +69,7 @@ class ContentDetail(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
-    def delete(self,request, pk):
+    def delete(self,request, pk, course_id):
         try:
             content = Content.objects.get(pk=pk)
         except Content.DoesNotExist:
