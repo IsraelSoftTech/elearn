@@ -6,12 +6,13 @@ from rest_framework import status
 
 
 class StudentSubmissionList(APIView): 
-    def get(self, request): 
+    def get(self, request, assignment_id): 
         try:
-            student_submssions = AssignAssignmentSubmission.objects.all() 
-        except AssignAssignmentSubmission.DoesNotExist: 
+            assigment = Assignment.objects.get(pk=assignment_id) 
+        except Assignment.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
 
+        student_submssions = assigment.students_submissons.all()
         serializer = AssignAssignmentSubmissionSerializer(student_submssions, many=True)
 
         return Response({"data": serializer.data})

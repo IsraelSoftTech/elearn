@@ -19,7 +19,7 @@ urlpatterns = [
 
 
     # student submission 
-    path("submissions", StudentSubmissionList.as_view(), name='assigment-submission'), 
+    path("<int:assignment_id>/submissions", StudentSubmissionList.as_view(), name='assigment-submission'), 
 
     
 ]

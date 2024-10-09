@@ -37,6 +37,7 @@ class Assignment(models.Model):
     assigned_students = models.ManyToManyField(Profile, blank=True)
     mcq_questions = models.ManyToManyField(MCQQuestion, blank=True)
     struct_questions = models.ManyToManyField(StructuralQuestion, blank=True)
+    students_submissons = models.ManyToManyField('AssignAssignmentSubmission', blank=True, related_name="all_submissions")
 
     def __str__(self): 
         return self.title
