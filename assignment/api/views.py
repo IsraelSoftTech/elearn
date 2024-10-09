@@ -37,7 +37,7 @@ class AssignmentDetail(APIView):
         if serializer.is_valid(): 
             serializer.save()
 
-            return Response({"success": "Assignment successfully created", "data": serializer.data}, status=status.HTTP_202_ACCEPTED)
+            return Response({"success": "Assignment successfully Updated", "data": serializer.data}, status=status.HTTP_202_ACCEPTED)
         else:
             return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         

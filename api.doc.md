@@ -150,6 +150,34 @@
 
 
 # Assignement 
+### View all Assignments 
+- endpoint "/assignment/list"
+- method: GET
+- expected body: None 
+- expected result if successfull: 
+``` 
+
+    {
+        "data":[
+
+            {
+                    "id": 2,
+                    "title": "Introduction to Algorithm",
+                    "description": "This assignment is going to help you understand alot of things about algorithms",
+                    "reference_link": null,
+                    "media_content": null,
+                    "created_by": null,
+                    "assigned_students": [],
+                    "mcq_questions": [],
+                    "struct_questions": []
+                
+            }
+        ]
+    
+    }
+
+```
+
 ### Creating an Assignment 
 - endpoint "/assignment/list"
 - method: POST
@@ -167,7 +195,7 @@
 ``` 
     {
         "message": "Assignment created successfully.", 
-        "data": {
+        
     "data": {
                 "id": 2,
                 "title": "Introduction to Algorithm",
@@ -180,6 +208,6 @@
                 "struct_questions": []
                 }
             }
-    }
+    
 
 ```
