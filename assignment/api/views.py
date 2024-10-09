@@ -4,6 +4,40 @@ from ..models import *
 from rest_framework.views import APIView
 from rest_framework import status
 
+class StructuralQuestionList(APIView): 
+    def get(self, request):
+        try:
+            struct_question = StructuralQuestion.objects.all()
+        except StructuralQuestion.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = StructuralQuestionSerializer(struct_question, many=True)
+
+        return Response({"data": serializer.data})
+    
+    def post(self, request):
+        serializer = StructuralQuestionSerializer(data=request.data)
+        assignment_id = request.data['question']
+
+        try: 
+            assignment = Assignment.objects.get(pk=assignment_id)
+        except  Assignment.DoesNotExist: 
+            return Response({"message": "Failed, Assignment doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
+
+        if serializer.is_valid():
+            serializer.save()
+            struct_question = StructuralQuestion.objects.get(pk=serializer.data['id'])
+            try: 
+                assignment.struct_questions.add(struct_question)
+                assignment.save()
+            except: 
+                struct_question.delete()
+                return Response({"There was an error assigning the Structural question to the assignment"})
+            return Response({"message":"Structural Question created successfully","data": serializer.data}, status=status.HTTP_201_CREATED)
+        
+        else: 
+            return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+    
 
 class MCQChoiceDetail(APIView): 
     def get(self,request,pk): 

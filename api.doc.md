@@ -523,3 +523,70 @@
 }
 
 ```
+
+
+# Structural question 
+
+- endpoint "/assignment/strut-question/list"
+- method: GET
+- expected body: None
+
+- expected result if successfull: 
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "question": "What is an Algorithm",
+            "answer": "",
+            "question_type": "STRUCT"
+        },
+        {
+            "id": 2,
+            "question": "How important are aglorithms",
+            "answer": "",
+            "question_type": "STRUCT"
+        },
+        {
+            "id": 4,
+            "question": "1",
+            "answer": "",
+            "question_type": "STRUCT"
+        }
+    ]
+}
+```
+
+
+
+
+### Creating a structural question 
+
+- endpoint "/assignment/strut-question/list"
+- method: POST
+- expected body: 
+
+```
+
+ {
+
+        "question": "Write an algorithm to add two numbers",
+        "answer": "",
+        "question": 1
+}
+
+
+```
+- expected result if successfull: 
+```
+{
+    "message": "Structural Question created successfully",
+    "data": {
+        "id": 4,
+        "question": "1",
+        "answer": "",
+        "question_type": "STRUCT"
+    }
+}
+
+```
