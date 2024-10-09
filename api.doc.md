@@ -211,3 +211,48 @@
     
 
 ```
+
+### View single Assignment 
+- endpoint "/assignment/id"
+- method: GET
+- expected body: None 
+
+- expected result if successfull:  
+```
+
+```
+
+
+### Updating an Assignment 
+- endpoint "/assignment/id"
+- method: PUT
+- expected body: 
+```
+     "data": {
+        "title": "Introduction to Algorithm | updated",
+        "description": "This assignment is going to help you understand alot of things about algorithms",
+        "reference_link": null,
+        "media_content": null,
+        
+    }
+
+```
+
+
+- expected result if successfull:  
+```
+{
+    "success": "Assignment successfully Updated",
+    "data": {
+        "id": 2,
+        "title": "Introduction to Algorithm | updated",
+        "description": "This assignment is going to help you understand alot of things about algorithms",
+        "reference_link": null,
+        "media_content": null,
+        "created_by": null,
+        "assigned_students": [],
+        "mcq_questions": [],
+        "struct_questions": []
+    }
+}
+```

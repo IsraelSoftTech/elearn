@@ -6,7 +6,11 @@ from rest_framework import status
 
 class AssignmentList(APIView): 
     def get(self, request):
-        assignments = Assignment.objects.all()
+        try:
+            assignments = Assignment.objects.all()
+        except Assignment.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
         serializer = AssignmentSerializer(assignments, many=True)
 
         return Response(serializer.data)
@@ -25,13 +29,21 @@ class AssignmentList(APIView):
 
 class AssignmentDetail(APIView): 
     def get(self,request,pk): 
-        assignment = Assignment.objects.get(pk=pk)
+        try:
+            assignment = Assignment.objects.get(pk=pk)
+        except Assignment.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
         serializer = AssignmentSerializer(assignment)
 
         return Response({"data": serializer.data})
     
     def put(self, request, pk): 
-        assignment = Assignment.objects.get(pk=pk)
+        try:
+            assignment = Assignment.objects.get(pk=pk)
+        except Assignment.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
         serializer = AssignmentSerializer(assignment, data=request.data)
 
         if serializer.is_valid(): 
@@ -39,16 +51,16 @@ class AssignmentDetail(APIView):
 
             return Response({"success": "Assignment successfully Updated", "data": serializer.data}, status=status.HTTP_202_ACCEPTED)
         else:
-            return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
     def delete(self, request,pk): 
         try:
             assignment = Assignment.objects.get(pk=pk)
         except Assignment.DoesNotExist: 
-            return Response({"error": "No content"}, status=status.HTTP_204_NO_CONTENT)
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         
         try: 
             assignment.delete()
-
+            return Response({"message": "Assignement successfully deleted"}, status=status.HTTP_204_NO_CONTENT)
         except: 
-            return Response({"error": "Error Deleting Assignment"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Error Deleting Assignment"}, status=status.HTTP_400_BAD_REQUEST)
