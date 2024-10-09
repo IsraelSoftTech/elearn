@@ -4,6 +4,47 @@ from ..models import *
 from rest_framework.views import APIView
 from rest_framework import status
 
+
+class StructuralQuestionDetail(APIView): 
+    def get(self,request,pk): 
+        try:
+            struct_question = StructuralQuestion.objects.get(pk=pk)
+        except StructuralQuestion.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = StructuralQuestionSerializer(struct_question)
+
+        return Response({"data": serializer.data})
+    
+    def put(self, request, pk): 
+        try:
+            struct_question = StructuralQuestion.objects.get(pk=pk)
+        except StructuralQuestion.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = StructuralQuestionSerializer(struct_question, data=request.data)
+
+        if serializer.is_valid(): 
+            serializer.save()
+
+            return Response({"success": "Structural question successfully Updated", "data": serializer.data}, status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def delete(self, request,pk): 
+        try:
+            struct_question = StructuralQuestion.objects.get(pk=pk)
+        except StructuralQuestion.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        try: 
+            struct_question.delete()
+            return Response({"message": "Structural question successfully deleted"}, status=status.HTTP_204_NO_CONTENT)
+        except: 
+            return Response({"message": "Error Deleting Structural question"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 class StructuralQuestionList(APIView): 
     def get(self, request):
         try:
@@ -75,7 +116,7 @@ class MCQChoiceDetail(APIView):
             mcq_choice.delete()
             return Response({"message": "MCQ Choice successfully deleted"}, status=status.HTTP_204_NO_CONTENT)
         except: 
-            return Response({"message": "Error Deleting Assignment"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Error Deleting MCQ Choice"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class MCQChoiceList(APIView): 
@@ -151,7 +192,7 @@ class MCQQuestionDetail(APIView):
             mcq_question.delete()
             return Response({"message": "MCQ Question successfully deleted"}, status=status.HTTP_204_NO_CONTENT)
         except: 
-            return Response({"message": "Error Deleting Assignment"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Error Deleting MCQ Question"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class MCQQuestionList(APIView): 

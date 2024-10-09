@@ -527,6 +527,7 @@
 
 # Structural question 
 
+### Viewing a structural
 - endpoint "/assignment/strut-question/list"
 - method: GET
 - expected body: None
@@ -590,3 +591,50 @@
 }
 
 ```
+### Updating a Structural question 
+- endpoint "/assignment/strut-question/id"
+- method: PUT
+- expected body: None 
+
+- expected result if successfull: 
+```
+{
+    "data": {
+        "id": 1,
+        "question": "What is an Algorithm",
+        "answer": "This is a finite step that is used to solve a problem",
+        "question_type": "STRUCT"
+    }
+}
+
+```
+
+
+### Updating a Structural question 
+- endpoint "/assignment/strut-question/id"
+- method: PUT
+- expected body: 
+
+```
+{
+    "question": "What is an Algorithm",
+    "answer": "This is a finite step that is used to solve a problem"
+}
+
+```
+
+- expected result if successfull: 
+
+```
+{
+    "success": "Structural question successfully Updated",
+    "data": {
+        "id": 1,
+        "question": "What is an Algorithm",
+        "answer": "This is a finite step that is used to solve a problem",
+        "question_type": "STRUCT"
+    }
+}
+
+```
+

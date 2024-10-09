@@ -15,5 +15,6 @@ urlpatterns = [
 
     # Structural Question 
     path("strut-question/list", StructuralQuestionList.as_view(), name='strut-question-list'), 
+    path("strut-question/<int:pk>", StructuralQuestionDetail.as_view(), name='strut-question'), 
     
 ]
