@@ -11,6 +11,7 @@ class MCQQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = MCQQuestion
         fields = "__all__"
+    choices = MCQChoiceSerializer(many=True, read_only=True)
 
 class StructuralQuestionSerializer(serializers.ModelSerializer): 
     class Meta:

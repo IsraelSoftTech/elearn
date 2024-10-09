@@ -302,15 +302,32 @@
     "data": [
         {
             "id": 1,
-            "question": "Which loop is infinite",
-            "question_type": "MCQ",
             "choices": [
-                1,
-                2,
-                3
-            ]
+                {
+                    "id": 1,
+                    "answer": "While",
+                    "is_correct": true
+                },
+                {
+                    "id": 2,
+                    "answer": "for",
+                    "is_correct": false
+                },
+                {
+                    "id": 3,
+                    "answer": "do while",
+                    "is_correct": false
+                }
+            ],
+            "question": "Which loop is infinite",
+            "question_type": "MCQ"
         }
     ]
 }
 
 ```
+
+### Creating a MCQ Question  
+- endpoint "/assignment/mcq-question/list"
+- method: POST
+- expected body: None

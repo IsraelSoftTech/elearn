@@ -18,7 +18,7 @@ class MCQQuestionList(APIView):
     
     def post(self, request):
         serializer = MCQQuestionSerializer(data=request.data)
-        assignment_id = request.POST['question_id']
+        assignment_id = request.data['assignment']
 
         try: 
             assingment = Assignment.objects.get(pk=assignment_id)
@@ -27,11 +27,11 @@ class MCQQuestionList(APIView):
 
         if serializer.is_valid():
             serializer.save()
-
+            mcq_question = MCQQuestion.objects.get(pk=serializer.data['id'])
             try: 
-                assingment.mcq_questions.add(serializer.data)
+                assingment.mcq_questions.add(mcq_question)
             except: 
-                serializer.data.delete()
+                mcq_question.delete()
                 return Response({"There was an error assigning the question to the assignement"})
             return Response({"message":"MCQ Question created successfully","data": serializer.data}, status=status.HTTP_201_CREATED)
         
