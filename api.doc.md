@@ -47,8 +47,8 @@
 # Content
 - A content cannot exist without a corresponding course 
 
-### Get all Content
-- endpoint "/course/content/list"
+### Get all Content for a course
+- endpoint "/course/course-id/content/list"
 - method: GET
 
 - expected result if successful: 
@@ -80,7 +80,7 @@
 
 
 ### Get single Content
-- endpoint "/course/content/id"
+- endpoint "/course/course-id/content/id"
 - method: GET
 
 - expected result if successfull: 
@@ -95,7 +95,7 @@
   ```
 
 ### Creating content
-- endpoint "/course/content/list"
+- endpoint "/course/course-id/content/list"
 - method: POST
 - expected body: 
 
@@ -103,7 +103,6 @@
     {
         "title": "Looping in Algorithms", *
         "description": "this is the text that has to be displyed to the user showing more stuff", *
-        "course": 4 *
         "media": ""
     }
 ```

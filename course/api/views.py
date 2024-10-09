@@ -19,19 +19,13 @@ class ContentList(APIView):
 
         return Response({"data":serializer.data})
     
-    def post(self,request):
+    def post(self,request, course_id):
         serializer = ContentSerializer(data=request.data)
-
-        course_id = request.data.get('course', None)
-
-        # checking to see is a course is passed
-        if course_id is None:
-            return Response({"message": "Can not create content without an associative course"}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             course = Course.objects.get(pk=course_id)
         except Course.DoesNotExist:
-            return Response({"message": "Course does not exist!"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Course does not exist!"}, status=status.HTTP_404_NOT_FOUND)
 
         if serializer.is_valid():
             serializer.save()
