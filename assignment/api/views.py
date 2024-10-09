@@ -6,9 +6,9 @@ from rest_framework import status
 
 
 class StructuralQuestionDetail(APIView): 
-    def get(self,request,pk): 
+    def get(self,request,struct_question_id, assignment_id): 
         try:
-            struct_question = StructuralQuestion.objects.get(pk=pk)
+            struct_question = StructuralQuestion.objects.get(pk=struct_question_id)
         except StructuralQuestion.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         
@@ -16,9 +16,9 @@ class StructuralQuestionDetail(APIView):
 
         return Response({"data": serializer.data})
     
-    def put(self, request, pk): 
+    def put(self, request, struct_question_id, assignment_id): 
         try:
-            struct_question = StructuralQuestion.objects.get(pk=pk)
+            struct_question = StructuralQuestion.objects.get(pk=struct_question_id)
         except StructuralQuestion.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         
@@ -31,9 +31,9 @@ class StructuralQuestionDetail(APIView):
         else:
             return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
-    def delete(self, request,pk): 
+    def delete(self, request, struct_question_id, assignment_id): 
         try:
-            struct_question = StructuralQuestion.objects.get(pk=pk)
+            struct_question = StructuralQuestion.objects.get(pk=struct_question_id)
         except StructuralQuestion.DoesNotExist: 
             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
         

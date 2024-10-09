@@ -525,7 +525,7 @@
 # Structural question 
 
 ### Viewing a structural
-- endpoint "/assignment/strut-question/list"
+- endpoint "/assignment/assignment_id/strut-question/list"
 - method: GET
 - expected body: None
 
@@ -560,7 +560,7 @@
 
 ### Creating a structural question 
 
-- endpoint "/assignment/strut-question/list"
+- endpoint "/assignment/assignment_id/strut-question/list"
 - method: POST
 - expected body: 
 
@@ -569,8 +569,7 @@
  {
 
         "question": "Write an algorithm to add two numbers",
-        "answer": "",
-        "question": 1
+        "answer": ""
 }
 
 
@@ -589,7 +588,7 @@
 
 ```
 ### Updating a Structural question 
-- endpoint "/assignment/strut-question/id"
+- endpoint "/assignment/assignment_id/strut-question/struct_question_id"
 - method: PUT
 - expected body: None 
 
@@ -608,7 +607,7 @@
 
 
 ### Updating a Structural question 
-- endpoint "/assignment/strut-question/id"
+- endpoint "/assignment/assignment_id/strut-question/struct_question_id"
 - method: PUT
 - expected body: 
 
