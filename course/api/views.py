@@ -7,8 +7,14 @@ from .serializers import CourseSerializer, ContentSerializer
 
 
 class ContentList(APIView):
-    def get(self, request):
-        contents = Content.objects.all()
+    def get(self, request, course_id):
+        try: 
+            course = Course.objects.get(pk=course_id)
+        except Course.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        contents = course.content.all()
+        
         serializer = ContentSerializer(contents, many=True)
 
         return Response({"data":serializer.data})
