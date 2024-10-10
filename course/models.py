@@ -1,6 +1,6 @@
 from django.db import models
 from user.models import Profile
-
+from assignment.models import Assignment
 # Create your models here.
 class Course(models.Model):
     name = models.CharField(max_length=50)
@@ -10,6 +10,7 @@ class Course(models.Model):
     enrolled_students = models.ManyToManyField(Profile, related_name='course_enrolled_in', blank=True)
     # reviews = 
     # comments =
+    assignments = models.ManyToManyField(Assignment, blank=True)
 
     def __str__(self):
         return self.name
@@ -23,6 +24,8 @@ class Content(models.Model):
     # class_taken = 
     media = models.FileField(upload_to='files', null=True, blank=True)
     is_complete = models.BooleanField(default=False)
+    assignments = models.ManyToManyField(Assignment, blank=True)
+
 
     def __str__(self):
         return self.title

@@ -73,6 +73,7 @@ class AssignAssignmentSubmission(models.Model):
     is_graded = models.BooleanField(default=False)
     graded_by = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True, blank=True)
     graded_on = models.DateTimeField(blank=True)
+    
 
     
     def __str__(self):
