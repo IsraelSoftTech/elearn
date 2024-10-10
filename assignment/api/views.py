@@ -4,6 +4,45 @@ from ..models import *
 from rest_framework.views import APIView
 from rest_framework import status
 
+class StudentSubmissionDetail(APIView): 
+    def get(self,request,stud_id, assignment_id): 
+        try:
+            submission = AssignAssignmentSubmission.objects.get(pk=stud_id)
+        except AssignAssignmentSubmission.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = AssignAssignmentSubmissionSerializer(submission)
+
+        return Response({"data": serializer.data})
+    
+    def put(self, request, stud_id, assignment_id): 
+        try:
+            submission = AssignAssignmentSubmission.objects.get(pk=stud_id)
+        except AssignAssignmentSubmission.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = StructuralQuestionSerializer(submission, data=request.data)
+
+        if serializer.is_valid(): 
+            serializer.save()
+
+            return Response({"success": "Student submission successfully Updated", "data": serializer.data}, status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def delete(self, request, struct_question_id, assignment_id): 
+        try:
+            submission = AssignAssignmentSubmission.objects.get(pk=struct_question_id)
+        except AssignAssignmentSubmission.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        try: 
+            submission.delete()
+            return Response({"message": "Submission successfully deleted"}, status=status.HTTP_204_NO_CONTENT)
+        except: 
+            return Response({"message": "Error Deleting Submission"}, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 class StudentSubmissionList(APIView): 
     def get(self, request, assignment_id): 
