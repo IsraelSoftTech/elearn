@@ -20,7 +20,7 @@ class Content(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     created_by = models.ManyToManyField(Profile, related_name='created_by',  blank=True)
-    # assignements =
+    assignments = models.ManyToManyField(Assignment, blank=True)
     # class_taken = 
     media = models.FileField(upload_to='files', null=True, blank=True)
     is_complete = models.BooleanField(default=False)

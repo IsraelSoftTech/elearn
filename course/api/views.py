@@ -4,6 +4,8 @@ from rest_framework import status
 
 from course.models import Course, Content
 from .serializers import CourseSerializer, ContentSerializer
+from assignment.api.serializers import AssignmentSerializer
+from assignment.models import Assignment
 
 
 class ContentList(APIView):
@@ -80,6 +82,44 @@ class ContentDetail(APIView):
             return Response({"message": "Content deleted successfully."}, status=status.HTTP_200_OK)
         except NotImplementedError:
             return Response({"message": "There was an error trying to delete content."}, status=status.HTTP_400_BAD_REQUEST)
+
+# Course assignment
+class CourseAssignmentList(APIView): 
+    def get(self, request, course_id):
+        try:
+            course = Course.objects.get(pk=course_id)
+        except Course.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        assignments = course.assignments.all()
+        serializer = AssignmentSerializer(assignments, many=True)
+
+        return Response({"data": serializer.data})
+    
+    def post(self, request, course_id):
+        serializer = AssignmentSerializer(data=request.data)
+
+        try:
+            course = Course.objects.get(pk=course_id)
+        except Course.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if serializer.is_valid():
+            serializer.save()
+
+            try: 
+                course.assignments.add(serializer.data['id'])
+                course.save()
+            except: 
+                assignment = Assignment.objects.get(pk=serializer.data['id'])
+                assignment.delete()
+
+                return Response({"error": "There was an error creating a course assignment"}, status=status.HTTP_400_BAD_REQUEST)
+
+            return Response({"message":"Assignment created successfully","data": serializer.data}, status=status.HTTP_201_CREATED)
+        
+        else: 
+            return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CourseList(APIView): 
