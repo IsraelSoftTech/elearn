@@ -1,0 +1,161 @@
+
+body{
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+/* Base styles */
+.logo {
+  display: flex;
+  margin-left: 70px;
+  margin-bottom: 20px;
+}
+
+.nav-bar {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.dash-left {
+  position: absolute;
+  top: 0;
+  width: 15%; /* Fixed 15% width for dash-left */
+  left: 0; /* Align left */
+  background-color: #fff; /* Light background color for visibility */
+  padding: 30px; /* Padding inside the dash-left */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better appearance */
+  height: 1250px; /* Full height of the viewport */
+
+}
+
+ul {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  justify-content: left;
+  font-size: 20px;
+}
+
+.sider {
+  display: flex;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: black;
+}
+
+.active {
+  overflow: hidden;
+  padding: 2px;
+
+  color: #fff;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.activemenu{
+  background: orangered;
+  color: #fff;
+  padding: 5px;
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+}
+
+/* Menu toggle button - initially hidden */
+.menu-toggle {
+  display: none; /* Hidden by default */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .dash-left {
+    display: none; /* Hide sidebar on smaller screens */
+ 
+  }
+
+  /* Menu button for mobile screens */
+  .menu-toggle {
+    display: block; /* Show the menu toggle button only on mobile screens */
+    position: fixed;
+    width: 40px;
+    top: 2px;
+    left: 10px;
+    background-color: orangered;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 4px;
+ 
+  }
+
+  /* Show sidebar when the active class is toggled */
+  .dash-left.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70%; /* Sidebar takes up more width on smaller screens */
+    height: 100%;
+    z-index: 999;
+    background-color: white;
+  }
+
+  /* Additional styling for sidebar links on smaller screens */
+  ul {
+    gap: 1rem;
+    font-size: 18px;
+    justify-content: center;
+  }
+
+  .sider {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .dash-left {
+    transform: translateX(-100%); /* Hide sidebar off-screen */
+    position: fixed;
+    width: 70%; /* Sidebar wider on smaller screens */
+  
+    height: auto; /* Set height to auto for flexibility */
+    max-height: 50%; /* Limit the height to 30% of the screen */
+    top: 0; /* Start at the top of the screen */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+  }
+
+  /* When sidebar is active, slide it in */
+  .dash-left.active {
+    transform: translateX(0);
+  }
+
+
+
+  /* Adjusting the placement of the content */
+  .content {
+    margin-top: 50px; /* Space at the top of the page for the content */
+    padding: 10px;
+  }
+
+  /* When the menu is active, shift the content down */
+  .menu-open .content {
+    margin-top: calc(30% + 20px); /* Move content below the sidebar when active */
+  }
+
+  ul {
+    gap: 1rem;
+    font-size: 18px;
+    justify-content: center;
+  }
+
+  .sider {
+    justify-content: center;
+  }
+}

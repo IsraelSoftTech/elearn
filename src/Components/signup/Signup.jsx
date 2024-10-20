@@ -36,7 +36,7 @@ const Signup = ({ onToggleAuth }) => {
             <button className='active btn btn-link' style={{color: 'orangered',textDecoration: 'none',}}>Sign Up</button>
           </li>
           <li className="list-inline-item">
-            <button onClick={onToggleAuth} className='btn btn-link' style={{color: 'orangered',textDecoration: 'none',}}>Sign In</button>
+            <button onClick={onToggleAuth} className='btn btn-link' style={{color: 'black',textDecoration: 'none',}}>Sign In</button>
           </li>
         </ul>
       </div>
@@ -46,9 +46,9 @@ const Signup = ({ onToggleAuth }) => {
           <h2 className="text-center " style={{color: 'orangered',}}>Sign up</h2>
           <button className="google-auth d-flex align-items-center justify-content-center border p-2 mb-3" style={{ color: '#555' }}>
             <FcGoogle style={{ paddingRight: '1rem', fontSize: '40px' }} />
-            Continue with Google
+            Continue with Google Authentication
           </button>
-          <p className="or-text text-center text-muted mb-3">________Or________</p>
+        <p className='divider'>Or</p>
           <form onSubmit={handleSubmit}>
             <h3>Name</h3>
             <input
@@ -91,7 +91,7 @@ const Signup = ({ onToggleAuth }) => {
               required
             />
             <p className="signin-text text-center">
-              Already have an account? <button onClick={onToggleAuth} className="btn btn-link text-cyan">Sign In</button>
+              Already have an account? <button onClick={onToggleAuth} className="btn-sign">Sign In</button>
             </p>
             <button type="submit" className="create-account-btn btn btn-warning w-100">Create account</button>
           </form>

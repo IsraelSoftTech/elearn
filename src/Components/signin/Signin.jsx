@@ -3,7 +3,7 @@ import './Signin.css';
 import { FcGoogle } from 'react-icons/fc';
 import signinlogo from '../../Assets/log.png';
 
-const Signin = ({ onToggleAuth }) => {
+const Signin = ({ onToggleAuth,onChangePassword }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -39,9 +39,9 @@ const Signin = ({ onToggleAuth }) => {
         <h2 style={{ color: '#FE7235' }}>Sign in</h2>
         <button className="google-auth">
           <FcGoogle style={{ paddingRight: '1rem', fontSize: '40px' }} />
-          Continue with Google
+          Continue with Google Authentication
         </button>
-        <p className="or-text">________Or________</p>
+        <p className='divider'>Or</p>
         <form onSubmit={handleSubmit}>
           <h3>Email</h3>
           <input
@@ -65,7 +65,7 @@ const Signin = ({ onToggleAuth }) => {
             <button  className="forgot-button">Forgot Password?</button>
             <br />
             Don't have an account?
-            <button  className="change-password-button">Change Password</button>
+            <button onClick={onChangePassword}className="change-password-button">Change Password</button>
           </p>
           <button type="submit" className="create-account-btn">Sign In</button>
         </form>

@@ -1,0 +1,171 @@
+/* General Styling for the Card */
+.meeting-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: fixed;
+ 
+
+  width: 50vw;
+  height: 50vh;
+  margin: 20px auto;
+ 
+  font-family: Arial, sans-serif;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+  overflow: hidden; /* Prevents content overflow */
+}
+
+/* Close Icon Styling */
+.close-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
+  color: #ff5a5f;
+  cursor: pointer;
+}
+
+/* Header Styling */
+.meeting-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meeting-header h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+  word-wrap: break-word; /* Ensures long text doesn't overflow */
+}
+
+.meeting-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+}
+
+.tag {
+  border: 1px solid rgb(141, 138, 138);
+  padding: 5px 10px;
+  font-size: 13px;
+  color: black;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin: 1px;
+}
+
+/* Description Styling */
+.description {
+  margin: 15px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+  word-wrap: break-word; /* Prevents horizontal overflow for long text */
+}
+
+/* Attendees Section */
+.attendees-section {
+  margin: 20px 0;
+}
+
+.attendee-kind {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.admin-but, .teacher-but {
+  border: 1px solid rgb(141, 138, 138);
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #5f6368;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Attendees List */
+.attendees-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.attendee {
+  border: 1px solid rgb(141, 138, 138);
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.trash-icon {
+  color: #ff5a5f;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Update Button Styling */
+.update-but {
+  position: absolute;
+  background-color: #e0e0e0;
+  color: black;
+  border-radius: 2px;
+  padding: 4px;
+  right: 10px;
+  bottom: 10px;
+  width: 140px;
+}
+
+.update-but:hover {
+  background-color: #d6d6d6;
+}
+
+/* Responsiveness for Small Screens */
+@media (max-width: 600px) {
+  .meeting-card {
+      padding: 15px;
+      width: 85%; /* Ensure it fits within smaller screens */
+      max-width: none; /* Removes the max-width restriction */
+  }
+
+  .meeting-header h3 {
+      font-size: 16px;
+  }
+
+  .tag {
+      font-size: 12px;
+  }
+
+  .time {
+      font-size: 12px;
+  }
+
+  .description {
+      font-size: 13px;
+  }
+
+  .attendee {
+      font-size: 11px;
+      padding: 3px 8px; /* Adjust padding for smaller screens */
+  }
+
+  .update-but {
+      font-size: 12px;
+      width: 100px; /* Reducing button size on smaller screens */
+  }
+
+  .admin-but, .teacher-but {
+      font-size: 10px; /* Smaller font size for the buttons */
+      padding: 3px 8px; /* Adjust padding to fit better */
+  }
+}

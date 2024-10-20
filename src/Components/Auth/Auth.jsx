@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Signup from '../signup/Signup';
-import Signin from '../signin/Signin';
-import ChangePassword from '../changepassword/ChangePassword';
+import Signup from '../Signup/Signup';
+import Signin from '../Signin/Signin';
+import ChangePassword from '../ChangePassword/ChangePassword';
+import ResetPassword from '../ResetPassword/ResetPassword';
 
 const Auth = () => {
   const [authMode, setAuthMode] = useState('signin'); // 'signin', 'signup', or 'changepassword'
@@ -13,10 +14,18 @@ const Auth = () => {
   return (
     <div>
       {authMode === 'signup' && <Signup onToggleAuth={() => toggleAuth('signin')} />}
-      {authMode === 'signin' && <Signin onToggleAuth={() => toggleAuth('signup')} />}
-      {authMode === 'changepassword' && <ChangePassword onToggleAuth={() => toggleAuth('signin')} />}
-      
-      
+      {authMode === 'signin' && (
+        <Signin
+          onToggleAuth={() => toggleAuth('signup')}
+          onChangePassword={() => toggleAuth('changepassword')} // Pass this to handle change password
+        />
+      )}
+      {authMode === 'changepassword' && (
+        <ChangePassword onToggleAuth={() => toggleAuth('signin')} />
+      )}
+      {authMode === 'reset' && (
+        <ResetPassword onToggleAuth={() => toggleAuth('signin')} />
+      )}
     </div>
   );
 };

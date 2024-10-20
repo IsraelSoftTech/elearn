@@ -1,21 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import reportWebVitals from "./reportWebVitals";
+import App from "../src/App.js";
 
 
-import reportWebVitals from './reportWebVitals';
-import Auth from './Components/Auth/Auth';
-import App from '../src/App.js';
-import ChangePassword from './Components/changepassword/ChangePassword.jsx';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-   
-   <Auth />
-   
-   
+    <App />
   </React.StrictMode>
 );
 

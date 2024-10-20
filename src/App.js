@@ -1,44 +1,45 @@
-
-
-
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Dash from './Components/dashBoard/Dash';
+
+import GraphChat from './Components/GraphChat/GraphChat';
+import Calenda from './Components/Calenda/Calenda';
+import Chats from './Components/Chats/Chats';
+import AdminDashboard from './Components/AdminDashboard/AdminDashboard';
+import NavComponent from './Components/NavComponent/NavComponent';
+import Students from './Components/Students/Students';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Students from './Components/students/Students';
-import Teachers from './Components/teachers/Teachers';
-import Courses from './Components/courses/Courses';
-
-import Homework from './Components/homework/Homework';
-import Attendance from './Components/attendance/Attendance';
-import ClassRoom from './Components/ClassRoom/ClassRoom';
-
-
+import NextPrev from './Components/NextPrev/NextPrev';
+import AdminDashOne from './Components/AdminDashOne/AdminDashOne';
+import AdminDashTwo from './Components/AdminDashTwo/AdminDashTwo';
 
 
 
 function App() {
+
+
   return (
+
  <div className='app'>
 
-  <Router>
-    
-    <Routes>
-      
-   
-    <Route path="/" element={<Dash />} />
-    <Route path="/students" element={<Students />} />
-    <Route path="/teachers" element={<Teachers />} />
-    <Route path="/courses" element={<Courses />} />
-    <Route path="/classroom" element={<ClassRoom />} />
-  
-    <Route path="/homework" element={<Homework />} />
-    <Route path="/attendance" element={<Attendance />} />
-   
- 
-    </Routes>
+  {/* <Chats/> */}
+{/* <Calenda/> */}
+{/* <GraphChat/> */}
+<Router>
+<Routes>
 
-  </Router>
+<Route path="/" element={<AdminDashboard />} />
+<Route path="/students" element={<Students />} />
+
+<Route path="/" element={<NextPrev />} />
+<Route path="/admin-dashone" element={<AdminDashOne />} />
+<Route path="/admin-dashtwo" element={<AdminDashTwo />} />
+
+</Routes>
+
+</Router>
+
+
   </div>
   );
 }

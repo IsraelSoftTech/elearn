@@ -1,0 +1,89 @@
+/* Custom calendar container with a square layout */
+.calendar-container {
+    width: 320px; /* Set width */
+    aspect-ratio: 1 / 1; /* Maintains a square ratio */
+    margin: 20px auto;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Add space between the header, weekdays, and days */
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  /* Customize the header (navigation) of the calendar */
+  .react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0; /* Reduce padding to fit inside the container */
+    width: 100%; /* Take full width */
+  }
+  
+  .react-calendar__navigation button {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 16px; /* Adjust font size to fit */
+    cursor: pointer;
+  }
+  
+  /* Customize the weekdays */
+  .react-calendar__month-view__weekdays {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding-bottom: 10px;
+    color: #666;
+    width: 100%;
+  }
+  
+  /* Customize the individual day tiles */
+  .react-calendar__tile {
+    background: none;
+    border: none;
+    padding: 8px;
+    margin: 2px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px; /* Slightly reduce font size */
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #3883fd;
+    color: white;
+  }
+  
+  .react-calendar__tile--now {
+    background-color: #6697f8;
+    border-radius: 8px;
+  }
+  
+  .react-calendar__tile:hover {
+    background-color: #eaeaea;
+    border-radius: 8px;
+  }
+  
+  /* Make the calendar responsive */
+  @media (max-width: 600px) {
+    .calendar-container {
+      width: 100%;
+      max-width: 100vw; /* Prevent overflow */
+      height: auto; /* Allow height to adjust based on content */
+      aspect-ratio: unset; /* Remove square aspect ratio for small screens */
+      margin: 10px 0;
+    }
+  
+    .react-calendar__tile {
+      font-size: 12px; /* Adjust for smaller screens */
+    }
+  
+    .react-calendar__navigation button {
+      font-size: 14px;
+    }
+  }
+  

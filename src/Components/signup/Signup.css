@@ -1,66 +1,85 @@
 body, html {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  height: 100%; /* Ensure full height */
-  overflow: hidden; /* Prevent scrolling */
-}
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100%; /* Ensure full height */
+    overflow: hidden; /* Prevent scrolling */
+  }
+  
+  .signup-header {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 60px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 20px; 
+    background-color: white; 
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    z-index: 10; 
+  }
+  
+  .signup-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px); /* Full height minus header height */
+    background-color: white;
+  }
+  .btn-sign{
+    background: none;
+    color:  #10ADDC;
 
-.signup-header {
-  position: fixed; /* Keep it fixed at the top */
-  top: 0; /* Align to the top */
-  left: 0; /* Align to the left */
-  width: 100%; /* Full width */
-  height: 60px; /* Normal height */
-  display: flex; /* Flexbox for alignment */
-  justify-content: space-between; /* Space between items */
-  align-items: center; /* Center items vertically */
-  padding: 0 20px; /* Padding for aesthetics */
-  background-color: white; /* Background color */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow */
-  z-index: 10; /* Ensure it's above other content */
-}
-
-.signup-container {
+  }
+ 
+  .signup-card {
+  
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .create-account-btn {
+    background-color: orangered;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Full width */
+  }
+  
+  .create-account-btn:hover {
+   color: white;
+   background-color: orangered;
+  }
+  
+.divider{
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: calc(100vh - 60px); /* Full height minus header height */
-  background-color: white;
+  text-align: center;
+  color: orangered;
 }
-
-.signup-card {
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.divider::before, .divider::after {
+  content: "";
+  flex:1;
+   border-bottom: 1px solid orangered;
+   margin: 0 10px;
 }
-
-.create-account-btn {
-  background-color: #ff6600;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%; /* Full width */
-}
-
-.create-account-btn:hover {
-  background-color: #e65a00;
-}
-
-.or-text {
-  color: #ff6600;
-}
-
-.active {
-  background: #ff6600;
-}
-
-.google-auth {
-  background-color: #f7f7f7;
-  cursor: pointer;
-}
-
-.google-auth:hover {
-  background-color: #e2e2e2;
-}
+  .active {
+    background: #ff6600;
+  }
+  
+  .google-auth {
+    background-color: #f7f7f7;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .google-auth:hover {
+    background-color: #e2e2e2;
+  }
+  
