@@ -44,6 +44,155 @@
   ```
 
 
+### viewing all assignments for a course 
+- endpoint: "/course/id/assignment/list"
+- e.g. :"/course/4/assignment/list"
+- method: GET
+- expected_body: None
+- success result
+``` 
+  {
+    "data": [
+        {
+            "id": 1,
+            "mcq_questions": [
+                {
+                    "id": 1,
+                    "choices": [
+                        {
+                            "id": 1,
+                            "answer": "While",
+                            "is_correct": true
+                        },
+                        {
+                            "id": 2,
+                            "answer": "for",
+                            "is_correct": false
+                        },
+                        {
+                            "id": 3,
+                            "answer": "do while",
+                            "is_correct": false
+                        },
+                        {
+                            "id": 7,
+                            "answer": "All of the above",
+                            "is_correct": false
+                        }
+                    ],
+                    "question": "Which loop is infinite among the suggested loops",
+                    "question_type": "MCQ"
+                },
+                {
+                    "id": 4,
+                    "choices": [],
+                    "question": "What will cause a loop to be infinite",
+                    "question_type": "MCQ"
+                },
+                {
+                    "id": 5,
+                    "choices": [],
+                    "question": "What will cause a loop to be infinite",
+                    "question_type": "MCQ"
+                }
+            ],
+            "struct_questions": [
+                {
+                    "id": 1,
+                    "question": "What is an Algorithm",
+                    "answer": "This is a finite step that is used to solve a problem",
+                    "question_type": "STRUCT"
+                },
+                {
+                    "id": 2,
+                    "question": "How important are aglorithms",
+                    "answer": "",
+                    "question_type": "STRUCT"
+                },
+                {
+                    "id": 5,
+                    "question": "How important are aglorithms",
+                    "answer": "They help in the easy development of programs",
+                    "question_type": "STRUCT"
+                }
+            ],
+            "students_submissons": [
+                {
+                    "id": 1,
+                    "mcq_answers": [
+                        {
+                            "id": 2,
+                            "is_correct": true,
+                            "student": 2,
+                            "question": 1,
+                            "choice": 1
+                        }
+                    ],
+                    "stuctural_answers": [
+                        {
+                            "id": 2,
+                            "answer": "This is a finite step by step process that is used to archieve the solution to a problem",
+                            "is_correct": true,
+                            "score": 5,
+                            "student": 2,
+                            "question": 1
+                        }
+                    ],
+                    "submission_date": "2024-10-09T18:15:02.022035Z",
+                    "updated_date": "2024-10-09T18:15:02.022035Z",
+                    "grade": "",
+                    "total_score": 6,
+                    "is_graded": true,
+                    "graded_on": "2024-10-09T18:14:59Z",
+                    "student": 2,
+                    "assignment": 1,
+                    "graded_by": 1
+                }
+            ],
+            "title": "Introduction to Algorithm",
+            "description": "This assignment is going to help you understand alot of things about algorithms",
+            "reference_link": null,
+            "media_content": null,
+            "created_by": 1,
+            "assigned_students": [
+                2
+            ]
+        },
+        {
+            "id": 3,
+            "mcq_questions": [],
+            "struct_questions": [],
+            "students_submissons": [],
+            "title": "Design principles for algorithms",
+            "description": "At the end of this assignment, the student will better understand how systems are been designed and many more, helping them to know how to get around things for development",
+            "reference_link": null,
+            "media_content": null,
+            "created_by": null,
+            "assigned_students": []
+        }
+    ]
+}
+
+```
+
+### creating an assignment for a particular course 
+- endpoint: "/course/id/assignment/list"
+- e.g. :"/course/4/assignment/list"
+- method: POST
+- expected_body: 
+
+``` 
+
+{
+        "title": "Design principles for algorithms",
+        "description": "At the end of this assignment, the student will better understand how systems are been designed and many more, helping them to know how to get around things for development",
+        "reference_link": null,
+        "media_content": null,
+
+}
+
+```
+
 # Content
 - A content cannot exist without a corresponding course 
 

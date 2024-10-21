@@ -83,6 +83,45 @@ class ContentDetail(APIView):
         except NotImplementedError:
             return Response({"message": "There was an error trying to delete content."}, status=status.HTTP_400_BAD_REQUEST)
 
+# Course assignment detail 
+class CourseAssignmentDetail(APIView): 
+    def get(self,request,course_id, assignment_id): 
+        try:
+            assignment = Assignment.objects.get(pk=assignment_id)
+        except Assignment.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = AssignmentSerializer(assignment)
+
+        return Response({"data": serializer.data})
+    
+    def put(self, request, course_id, assignment_id): 
+        try:
+            assignment = Assignment.objects.get(pk=assignment_id)
+        except Assignment.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = AssignmentSerializer(assignment, data=request.data)
+
+        if serializer.is_valid(): 
+            serializer.save()
+
+            return Response({"success": "Assignment successfully Updated", "data": serializer.data}, status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def delete(self, request,course_id, assignment_id): 
+        try:
+            assignment = Assignment.objects.get(pk=assignment_id)
+        except Assignment.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        try: 
+            assignment.delete()
+            return Response({"message": "Assignement successfully deleted"}, status=status.HTTP_204_NO_CONTENT)
+        except: 
+            return Response({"message": "Error Deleting Assignment"}, status=status.HTTP_400_BAD_REQUEST)
+
 # Course assignment
 class CourseAssignmentList(APIView): 
     def get(self, request, course_id):

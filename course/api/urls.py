@@ -11,6 +11,7 @@ urlpatterns = [
     path('<int:course_id>/content/<int:pk>', views.ContentDetail.as_view(), name='content'),
 
     # assignment creation
-    path('<int:course_id>/assignment/list', views.CourseAssignmentList.as_view(), name='course-assignment')
+    path('<int:course_id>/assignment/list', views.CourseAssignmentList.as_view(), name='course-assignment'),
+    path('<int:course_id>/assignment/<int:assignment_id>', views.CourseAssignmentDetail.as_view(), name='course-assignment-detail')
 
 ]
