@@ -13,9 +13,8 @@ import Meeting from '../Meeting/Meeting';
 import Application from '../Application/Application';
 import NextPrev from '../NextPrev/NextPrev';
 
-
 import Modal from '../Modal/Modal';
-import NextPrevOne from '../NextPrevOne/NextPrevOne';
+
 
 const AdminDashOne = () => {
   return (
@@ -84,7 +83,7 @@ const AdminDashOne = () => {
                     
                     </div>
     
-                   <NextPrevOne/>
+                   <NextPrev/>
     
           </div>
       <Modal/>

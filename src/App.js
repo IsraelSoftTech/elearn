@@ -31,7 +31,7 @@ function App() {
 <Route path="/" element={<AdminDashboard />} />
 <Route path="/students" element={<Students />} />
 
-<Route path="/" element={<NextPrev />} />
+<Route path="/admindashboard" element={<NextPrev />} />
 <Route path="/admin-dashone" element={<AdminDashOne />} />
 <Route path="/admin-dashtwo" element={<AdminDashTwo />} />
 

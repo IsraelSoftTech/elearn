@@ -12,7 +12,7 @@ import Chats from '../Chats/Chats';
 import Meeting from '../Meeting/Meeting';
 import Application from '../Application/Application';
 import NextPrev from '../NextPrev/NextPrev';
-import NextPrevOne from '../NextPrevOne/NextPrevOne';
+
 
 
 
@@ -83,7 +83,7 @@ const AdminDashTwo= () => {
                     
                     </div>
     
-                  <NextPrevOne/>
+                  <NextPrev/>
     
           </div>
     

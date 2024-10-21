@@ -3,11 +3,16 @@ import './NextPrev.css';
 import { GrFormNextLink } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-const NextPrev = () => {
+const NextPrev = ({ currentPage }) => {
   const navigate = useNavigate(); // Hook to handle navigation
 
   const handleNextClick = () => {
+    if (currentPage === 'admindashboard')
+      {
     navigate('/admin-dashone'); // Navigate to the AdminDashOne component
+      } else if (currentPage === '/admin-dashtwo'){
+        navigate('/admin-dashthree'); // Navigate to the AdminDashTwo component
+      }
   };
 
   return (
