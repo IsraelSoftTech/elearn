@@ -1,0 +1,48 @@
+/* Cards container */
+.cards {
+    width: 81.5%;
+    position: absolute;
+    right: 0;
+    margin-top: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1; /* Ensure the cards container grows to fill the remaining space */
+    padding: 20px;
+ border: none;
+    overflow: auto; /* If the content overflows, allow horizontal scrolling */
+  }
+  
+  /* Individual card styles */
+  .card {
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 5px;
+    flex-basis: calc(33% - 20px); /* Each card takes up roughly a third of the available width */
+    
+    justify-content: center;
+    align-items: center;
+
+  }
+    
+  .text h4{
+    font-size: 21px;
+    font-weight: 400;
+    text-align: center;
+  }
+  .text h3{
+    font-size: 17px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .icon{
+    background: #e0dede;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+  }

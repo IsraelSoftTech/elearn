@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NextPrev from './Components/NextPrev/NextPrev';
 import AdminDashOne from './Components/AdminDashOne/AdminDashOne';
 import AdminDashTwo from './Components/AdminDashTwo/AdminDashTwo';
+import Courses from './Components/Courses/Courses';
 
 
 
@@ -30,6 +31,7 @@ function App() {
 
 <Route path="/" element={<AdminDashboard />} />
 <Route path="/students" element={<Students />} />
+<Route path="/courses" element={<Courses />} />
 
 <Route path="/admindashboard" element={<NextPrev />} />
 <Route path="/admin-dashone" element={<AdminDashOne />} />
