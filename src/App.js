@@ -7,7 +7,7 @@ import Calenda from './Components/Calenda/Calenda';
 import Chats from './Components/Chats/Chats';
 import AdminDashboard from './Components/AdminDashboard/AdminDashboard';
 import NavComponent from './Components/NavComponent/NavComponent';
-import Students from './Components/Students/Students';
+// import Students from './Components/Students/Students';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NextPrev from './Components/NextPrev/NextPrev';
 import AdminDashOne from './Components/AdminDashOne/AdminDashOne';
@@ -30,7 +30,7 @@ function App() {
 <Routes>
 
 <Route path="/" element={<AdminDashboard />} />
-<Route path="/students" element={<Students />} />
+{/* <Route path="/students" element={<Students />} /> */}
 <Route path="/courses" element={<Courses />} />
 
 <Route path="/admindashboard" element={<NextPrev />} />
