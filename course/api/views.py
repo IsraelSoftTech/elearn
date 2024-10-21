@@ -166,7 +166,12 @@ class CourseList(APIView):
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
 
-        return Response({"data":serializer.data})
+        data = []
+        for course in serializer.data: 
+            course_data = {'id': course['id'], 'title': course['name'], 'enrolled_students': len(course['enrolled_students']), 'teachers': len(course['teacher']), 'completion': 0}
+            data.append(course_data)
+
+        return Response({"data":data})
     
     def post(self, request): 
         serializer = CourseSerializer(data=request.data)
@@ -188,7 +193,6 @@ class CourseDetails(APIView):
             return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = CourseSerializer(course)
-
         return Response({"data":serializer.data}, status=status.HTTP_200_OK)
     
     def put(self,request,pk):
