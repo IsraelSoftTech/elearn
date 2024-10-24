@@ -6,10 +6,11 @@ class Course(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=300, null=True, blank=True)
     content = models.ManyToManyField('Content', blank=True)
-    teacher = models.ManyToManyField(Profile, related_name='course_teacher',  blank=True)
+    teachers = models.ManyToManyField(Profile, related_name='course_teacher',  blank=True)
     enrolled_students = models.ManyToManyField(Profile, related_name='course_enrolled_in', blank=True)
     # reviews = 
     # comments =
+    # classes = models.ManyToManyField(blank=True)
     assignments = models.ManyToManyField(Assignment, blank=True)
 
     def __str__(self):

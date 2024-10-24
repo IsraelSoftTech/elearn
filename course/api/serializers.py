@@ -13,10 +13,26 @@ class ContentSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     # content = ContentSerializer(many=True, read_only=True)
     content = serializers.SerializerMethodField()
+    teachers = serializers.SerializerMethodField()
+    enrolled_students = serializers.SerializerMethodField()
+    assignments = serializers.SerializerMethodField()
+
+    # change this into a serializerMethod that will get all of the classes
+    classes = serializers.IntegerField(default=0, read_only=True)
 
     class Meta:
         model = Course
         fields = "__all__"
+
+    def get_assignments(self,obj): 
+        return len(obj.assignments.all())
+
+    def get_enrolled_students(self, obj): 
+        return len(obj.enrolled_students.all())
+
+    def get_teachers(self,obj): 
+        return len(obj.teachers.all())
+    
 
     def get_content(self, obj): 
         allContent = obj.content.all()
@@ -24,7 +40,7 @@ class CourseSerializer(serializers.ModelSerializer):
         for content in allContent: 
             content_stat = {"id": content.pk, "title": content.title, "progress": content.course_progress()}
             courseContent.append(content_stat)
-            
+
         return courseContent
  
  
