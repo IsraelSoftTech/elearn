@@ -9,11 +9,13 @@
 - expected_body:
 
         ```
-            {
+             {
                 "name": "Algorithms | updated - 1",
                 "description": "This is one of the most important concepts in the computer and in life in general.",
+                "teachers": [3]
             }
         ```
+- an empty array should be passed if no teacher exist. 
 
 ### Edidting a course 
 - endpoint: "/course"

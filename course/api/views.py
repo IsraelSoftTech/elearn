@@ -1,12 +1,14 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from django.db import transaction
+
 
 from course.models import Course, Content
 from .serializers import CourseSerializer, ContentSerializer
 from assignment.api.serializers import AssignmentSerializer
 from assignment.models import Assignment
-
+from user.models import Profile
 
 class ContentList(APIView):
     def get(self, request, course_id):
@@ -178,10 +180,37 @@ class CourseList(APIView):
     def post(self, request): 
         serializer = CourseSerializer(data=request.data)
 
+        try:
+            teachers = request.data['teachers']
+        except: 
+            teachers = None
+
         if serializer.is_valid(): 
             serializer.save()
 
-            return Response({"data":serializer.data})
+            if teachers: 
+                try: 
+                    course = Course.objects.get(pk=serializer.data['id'])
+                except Course.DoesNotExist:
+                    return Response({"error": "Course does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+                    
+                for teacher in teachers: 
+                    try:
+                        teacher_data = Profile.objects.get(pk=teacher)
+                    except: 
+                        pass
+                    
+                #   assigning a teacher to a course
+                    try: 
+                        course.teachers.add(teacher_data)
+                    except: 
+                        pass
+                course.save()
+
+                course = CourseSerializer(course)
+                return Response({"data":course.data})
+            
+            return Response({"data": serializer.data})
         
         else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
