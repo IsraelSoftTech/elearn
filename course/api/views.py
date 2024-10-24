@@ -85,6 +85,63 @@ class ContentDetail(APIView):
         except NotImplementedError:
             return Response({"message": "There was an error trying to delete content."}, status=status.HTTP_400_BAD_REQUEST)
 
+# Assigning a tutor to course
+class CourseAssignTeacher(APIView): 
+    def post(self,request): 
+        course_id = request.data['course']
+        teachers_id = request.data['teachers']
+
+        try:
+            course = Course.objects.get(pk=course_id)
+        except Course.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if course: 
+            if teachers_id: 
+                for teacher_id in teachers_id: 
+                    try:
+                        teacher = Profile.objects.get(pk=teacher_id)
+                    except Profile.DoesNotExist: 
+                        pass
+
+                    if teacher: 
+                        course.teachers.add(teacher)
+                
+                course.save()
+                
+                serialier = CourseSerializer(course)
+                return Response({"data": serialier.data}, status=status.HTTP_201_CREATED)
+        
+# Assigning a tutor to course
+class CourseUassignTeacher(APIView): 
+    def post(self,request): 
+        course_id = request.data['course']
+        teachers_id = request.data['teachers']
+
+        try:
+            course = Course.objects.get(pk=course_id)
+        except Course.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if course: 
+            if teachers_id: 
+                for teacher_id in teachers_id: 
+                    try:
+                        teacher = Profile.objects.get(pk=teacher_id)
+                    except Profile.DoesNotExist: 
+                        pass
+
+                    if teacher: 
+                        course.teachers.remove(teacher)
+                
+                course.save()
+                
+                serialier = CourseSerializer(course)
+                return Response({"data": serialier.data}, status=status.HTTP_201_CREATED)
+        
+
+        
+
 # Course assignment detail 
 class CourseAssignmentDetail(APIView): 
     def get(self,request,course_id, assignment_id): 
@@ -123,6 +180,8 @@ class CourseAssignmentDetail(APIView):
             return Response({"message": "Assignement successfully deleted"}, status=status.HTTP_204_NO_CONTENT)
         except: 
             return Response({"message": "Error Deleting Assignment"}, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 # Course assignment
 class CourseAssignmentList(APIView): 

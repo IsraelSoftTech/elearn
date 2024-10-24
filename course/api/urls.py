@@ -5,6 +5,9 @@ urlpatterns = [
     path('list/', views.CourseList.as_view(), name='course-list'),
     path('<int:pk>', views.CourseDetails.as_view(), name='course'), 
 
+    # assign teacher to course
+    path('assign-tutor', views.CourseAssignTeacher.as_view(), name='assign_tutor'),
+    path('unassign-tutor', views.CourseUassignTeacher.as_view(), name='unassign_tutor'),
 
     # content list 
     path('<int:course_id>/content/list', views.ContentList.as_view(), name='content-list'), 
