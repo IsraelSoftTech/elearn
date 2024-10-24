@@ -32,6 +32,30 @@
 
     course_content constains the ids of the content of the courses and it is optional too, 
 
+### Assigning a teacher to a course
+- endpoint: "/course/assign-tutor"
+- method: POST
+- expected_body:
+
+        ```
+           {
+            "course": 1 // course id, 
+            "teachers": [3,] // teachers id is passed inside of an array.
+           }
+        ```
+### Unassigning a teacher to a course
+- endpoint: "/course/unassign-tutor"
+- method: POST
+- expected_body:
+
+        ```
+           {
+            "course": 1 // course id, 
+            "teachers": [3,] // teachers id is passed inside of an array.
+           }
+        ```
+
+
 
 ### Deleting a course 
 - endpoint: "/course/id"
