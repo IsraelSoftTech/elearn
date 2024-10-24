@@ -171,7 +171,7 @@ class CourseList(APIView):
             course_data = {'id': course['id'], 'title': course['name'], 'enrolled_students': len(course['enrolled_students']), 'teachers': len(course['teacher']), 'completion': 0}
             data.append(course_data)
 
-        return Response({"data":data})
+        return Response({"data":data, "total_courses": len(data), "inactive_courses": 0})
     
     def post(self, request): 
         serializer = CourseSerializer(data=request.data)

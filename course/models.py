@@ -27,5 +27,13 @@ class Content(models.Model):
     assignments = models.ManyToManyField(Assignment, blank=True)
 
 
+    # checking the progress of the course 
+    # still to do aloto of work here.
+    def course_progress(self): 
+        if self.is_complete: 
+            return 100
+        else: 
+            return 0
+
     def __str__(self):
         return self.title
