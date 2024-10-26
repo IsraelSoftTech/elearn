@@ -34,10 +34,34 @@
 
  that is how the header should look exactly like that for it to work. 
 
+#### Refreshing the access token
+ - The access token expires after a day ie 24 hours. and the refresh token persist for 14 days. so when ever the  access token expires, it can be refreshed ie, a different access token regenerated using the the refres token. 
+ 
+- Refreshing the access token 
+- endpoint: "/authentication/login/refresh"
+- method: POST
+- expected_body:
+
+        ```
+             {
+                "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczMTE1NTIxMCwiaWF0IjoxNzI5OTQ1NjEwLCJqdGkiOiI2ZTIzZWQzMWQ1NmQ0OTFjODRlZThkYTAzMWVmOWMwYSIsInVzZXJfaWQiOjF9.AFp7yJy3kgENf67oiNsI6EIH84iLycRkgGiq2UuX7DI",
+                
+            }
+        ```
+ 
+ - expected success result 
+ ``` 
+   {
+   
+    "access": "bhJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMDMyMDEwLCJpYXQiOjE3Mjk5NDU2MTAsImp0aSI6IjdkYzkxYmFiZWVlMzQwMjQ4YzQ0MGQ0NDM5NjgxYmIyIiwidXNlcl9pZCI6MX0.21ud6_BZBYQyh5TZQyeLNXXfUueezgopof9Mcpwua452"
+  }
+
+ ```
+
  ### Logout 
  - No request is needed to logout, just delete the authentication token, and when that is done, the user should be considered logout. 
 
- 
+
 
 # courses 
 ### Creating a course
