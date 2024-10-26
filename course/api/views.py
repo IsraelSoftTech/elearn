@@ -85,6 +85,34 @@ class ContentDetail(APIView):
         except NotImplementedError:
             return Response({"message": "There was an error trying to delete content."}, status=status.HTTP_400_BAD_REQUEST)
 
+# Student enrollment
+# class CourseEnroll(APIView): 
+#     def post(self,request): 
+#         course_id = request.data['course']
+#         student_id = request.data['student']
+
+#         try:
+#             course = Course.objects.get(pk=course_id)
+#         except Course.DoesNotExist: 
+#             return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        
+#         if course: 
+#             if teachers_id: 
+#                 for teacher_id in teachers_id: 
+#                     try:
+#                         teacher = Profile.objects.get(pk=teacher_id)
+#                     except Profile.DoesNotExist: 
+#                         pass
+
+#                     if teacher: 
+#                         course.teachers.add(teacher)
+                
+#                 course.save()
+                
+#                 serialier = CourseSerializer(course)
+#                 return Response({"data": serialier.data}, status=status.HTTP_201_CREATED)
+            
+
 # Assigning a tutor to course
 class CourseAssignTeacher(APIView): 
     def post(self,request): 

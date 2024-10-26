@@ -2,6 +2,43 @@
 1. * indicates required and not * indicates optional. 
 - if required and no data is passed, that request is going to fail
 
+
+
+# Authentication 
+### Login 
+- endpoint: "/authentication/login"
+- method: POST
+- expected_body:
+
+        ```
+             {
+                "username": "",
+                "password": ""
+            }
+        ```
+
+- expected success result 
+ ``` 
+   {
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczMTE1NTIxMCwiaWF0IjoxNzI5OTQ1NjEwLCJqdGkiOiI2ZTIzZWQzMWQ1NmQ0OTFjODRlZThkYTAzMWVmOWMwYSIsInVzZXJfaWQiOjF9.AFp7yJy3kgENf67oiNsI6EIH84iLycRkgGiq2UuX7DI",
+
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMDMyMDEwLCJpYXQiOjE3Mjk5NDU2MTAsImp0aSI6IjdkYzkxYmFiZWVlMzQwMjQ4YzQ0MGQ0NDM5NjgxYmIyIiwidXNlcl9pZCI6MX0.21ud6_BZBYQyh5TZQyeLNXXfUueezgopof9Mcpwuad8"
+}
+
+
+ ```
+
+ - save the access token and add it into the headers of all the request that you are going to making. the header should look like that below 
+
+ Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMDMyMDEwLCJpYXQiOjE3Mjk5NDU2MTAsImp0aSI6IjdkYzkxYmFiZWVlMzQwMjQ4YzQ0MGQ0NDM5NjgxYmIyIiwidXNlcl9pZCI6MX0.21ud6_BZBYQyh5TZQyeLNXXfUueezgopof9Mcpwuad8'
+
+ that is how the header should look exactly like that for it to work. 
+
+ ### Logout 
+ - No request is needed to logout, just delete the authentication token, and when that is done, the user should be considered logout. 
+
+ 
+
 # courses 
 ### Creating a course
 - endpoint: "/course"

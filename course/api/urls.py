@@ -8,6 +8,9 @@ urlpatterns = [
     # assign teacher to course
     path('assign-tutor', views.CourseAssignTeacher.as_view(), name='assign_tutor'),
     path('unassign-tutor', views.CourseUassignTeacher.as_view(), name='unassign_tutor'),
+    #  enroll studends
+    # path('enroll', views.CourseEnroll.as_view(), name="enroll_student"), 
+    # path('unenroll', views.CourseOnenroll.as_view(), name="unenroll_student"),
 
     # content list 
     path('<int:course_id>/content/list', views.ContentList.as_view(), name='content-list'), 
