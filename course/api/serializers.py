@@ -19,6 +19,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     # change this into a serializerMethod that will get all of the classes
     classes = serializers.IntegerField(default=0, read_only=True)
+    progress = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
@@ -42,6 +43,21 @@ class CourseSerializer(serializers.ModelSerializer):
             courseContent.append(content_stat)
 
         return courseContent
+    
+    def get_progress(self, obj): 
+        allContent = obj.content.all()
+        contentProgress = 0
+
+        for content in allContent: 
+            contentProgress += content.course_progress()
+        # ensuring no division by 0 issue
+        try: 
+            courseProgress = (contentProgress/len(allContent)) 
+        except: 
+            courseProgress = 0 
+
+        return courseProgress
+
  
  
     def validate_title(self, value): 

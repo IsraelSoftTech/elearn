@@ -18,3 +18,14 @@ def create_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
     
+
+
+class Discussion(models.Model): 
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='user_discussions')
+    message = models.CharField(max_length=100)
+    liker = models.ManyToManyField(Profile, blank=True)
+    likes = models.PositiveBigIntegerField(default=0)
+    replies = models.ManyToManyField('Discussion', blank=True, related_name='discussion_replies')
+
+    def get_all_replies(self): 
+        return len(self.replies.all())
