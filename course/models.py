@@ -1,6 +1,7 @@
 from django.db import models
-from user.models import Profile
+from user.models import Profile, Discussion
 from assignment.models import Assignment
+
 # Create your models here.
 class Course(models.Model):
     name = models.CharField(max_length=50)
@@ -12,6 +13,7 @@ class Course(models.Model):
     # comments =
     # classes = models.ManyToManyField(blank=True)
     assignments = models.ManyToManyField(Assignment, blank=True)
+    discussions = models.ManyToManyField(Discussion, blank=True, related_name='course_discussions')
 
     def __str__(self):
         return self.name
@@ -26,10 +28,11 @@ class Content(models.Model):
     media = models.FileField(upload_to='files', null=True, blank=True)
     is_complete = models.BooleanField(default=False)
     assignments = models.ManyToManyField(Assignment, blank=True)
-
+    discussions = models.ManyToManyField(Discussion, blank=True, related_name='content_discussions')
+    
 
     # checking the progress of the course 
-    # still to do aloto of work here.
+    # still to do alot of work here.
     def course_progress(self): 
         if self.is_complete: 
             return 100

@@ -8,7 +8,44 @@ from course.models import Course, Content
 from .serializers import CourseSerializer, ContentSerializer
 from assignment.api.serializers import AssignmentSerializer
 from assignment.models import Assignment
-from user.models import Profile
+from user.models import Profile, Discussion
+from user.api.serializers import DiscussionSerializer
+
+
+class courseDiscussion(APIView): 
+    def get(self,request, course_id): 
+        try: 
+            course = Course.objects.get(id=course_id)
+        except Course.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+        print(course.discussions.all())
+        serializer = DiscussionSerializer(course.discussions.all(), many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, course_id): 
+        try: 
+            message = request.data.get('message')
+        except: 
+            return Response({"error": "Message Field is required"})
+        
+        try:
+            course = Course.objects.get(pk=course_id)
+        except Course.DoesNotExist: 
+            return Response({"message": "No content"}, status=status.HTTP_404_NOT_FOUND)
+
+        profile = Profile.objects.get(user__username=request.user.username)
+
+        discussion = Discussion.objects.create(
+            user = profile, 
+            message=message
+        )
+
+        course.discussions.add(discussion)
+        course.save() 
+        
+        return Response({"message": "Discussion added successfully"}, status=status.HTTP_201_CREATED)
+
+
 
 class ContentList(APIView):
     def get(self, request, course_id):
@@ -168,8 +205,6 @@ class CourseUassignTeacher(APIView):
                 return Response({"data": serialier.data}, status=status.HTTP_201_CREATED)
         
 
-        
-
 # Course assignment detail 
 class CourseAssignmentDetail(APIView): 
     def get(self,request,course_id, assignment_id): 
@@ -250,11 +285,13 @@ class CourseAssignmentList(APIView):
             return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
+
 class CourseList(APIView): 
     def get(self, request): 
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
-
+        
+        
         # data = []
         # for course in serializer.data: 
         #     course_data = {'id': course['id'], 'title': course['name'], 'enrolled_students': len(course['enrolled_students']), 'teachers': len(course['teacher']), 'completion': 0}

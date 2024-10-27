@@ -4,6 +4,7 @@ from course.api import views
 urlpatterns = [
     path('list/', views.CourseList.as_view(), name='course-list'),
     path('<int:pk>', views.CourseDetails.as_view(), name='course'), 
+    path('<int:course_id>/discussions', views.courseDiscussion.as_view(), name='course_discussion'),
 
     # assign teacher to course
     path('assign-tutor', views.CourseAssignTeacher.as_view(), name='assign_tutor'),

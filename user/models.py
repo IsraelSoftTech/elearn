@@ -18,7 +18,7 @@ def create_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
     
-
+ 
 
 class Discussion(models.Model): 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='user_discussions')
@@ -29,3 +29,6 @@ class Discussion(models.Model):
 
     def get_all_replies(self): 
         return len(self.replies.all())
+    
+    def __str__(self): 
+        return f"{self.user.user.username} | {self.message}"

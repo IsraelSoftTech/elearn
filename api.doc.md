@@ -5,8 +5,36 @@
 
 
 # Authentication 
+### Registration 
+- endpoint: "/authentication/register/"
+- method: POST
+- expected_body:
+``` 
+    {
+        "username": "test_user", 
+        "first_name": "Test", 
+        "last_name": "User", 
+        "email": "testuser@elearning.com", 
+        "password": "django202",
+        "password2": "django2023"
+    }
+```
+- expected success result 
+
+```
+    {
+        "username": "test_user",
+        "first_name": "Test",
+        "last_name": "User",
+        "full_name": "Test User",
+        "email": "testuser@elearning.com",
+        "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczMTIwODk3MCwiaWF0IjoxNzI5OTk5MzcwLCJqdGkiOiJkNzcyYWFmMzZjM2Y0MTYwOTU3YjhkYzgyODA2OWNhZSIsInVzZXJfaWQiOjR9.UNtBKqqowOUFUuQ3iTmLb609gM__A-D6FY8Whr7em48",
+
+        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMDg1NzcwLCJpYXQiOjE3Mjk5OTkzNzAsImp0aSI6ImJhZDRjZjBkZTZmMjQ5MWM5OThjNjBmZGEzNTM1ZGUzIiwidXNlcl9pZCI6NH0.78Rhy95o1zzQbJbVGS8PRbGL7Qev1SDGuKn0flYuNYQ"
+    }
+```
 ### Login 
-- endpoint: "/authentication/login"
+- endpoint: "/authentication/login/"
 - method: POST
 - expected_body:
 
@@ -19,12 +47,15 @@
 
 - expected success result 
  ``` 
-   {
-    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczMTE1NTIxMCwiaWF0IjoxNzI5OTQ1NjEwLCJqdGkiOiI2ZTIzZWQzMWQ1NmQ0OTFjODRlZThkYTAzMWVmOWMwYSIsInVzZXJfaWQiOjF9.AFp7yJy3kgENf67oiNsI6EIH84iLycRkgGiq2UuX7DI",
-
-    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMDMyMDEwLCJpYXQiOjE3Mjk5NDU2MTAsImp0aSI6IjdkYzkxYmFiZWVlMzQwMjQ4YzQ0MGQ0NDM5NjgxYmIyIiwidXNlcl9pZCI6MX0.21ud6_BZBYQyh5TZQyeLNXXfUueezgopof9Mcpwuad8"
+{
+    "username": "test_user",
+    "first_name": "Test",
+    "last_name": "User",
+    "full_name": "Test User",
+    "email": "testuser@elearning.com",
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczMTIwODk3MCwiaWF0IjoxNzI5OTk5MzcwLCJqdGkiOiJkNzcyYWFmMzZjM2Y0MTYwOTU3YjhkYzgyODA2OWNhZSIsInVzZXJfaWQiOjR9.UNtBKqqowOUFUuQ3iTmLb609gM__A-D6FY8Whr7em48",
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMDg1NzcwLCJpYXQiOjE3Mjk5OTkzNzAsImp0aSI6ImJhZDRjZjBkZTZmMjQ5MWM5OThjNjBmZGEzNTM1ZGUzIiwidXNlcl9pZCI6NH0.78Rhy95o1zzQbJbVGS8PRbGL7Qev1SDGuKn0flYuNYQ"
 }
-
 
  ```
 
